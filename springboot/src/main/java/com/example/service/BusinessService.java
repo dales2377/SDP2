@@ -36,10 +36,10 @@ public class BusinessService {
             throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);
         }
         business.setRole(RoleEnum.BUSINESS.name());
-        String hash = BCrypt.hashpw(business.getPassword());
-        business.setPassword(hash);
-        System.out.println(hash);
-        System.out.println(business.getPassword());
+        String hash = BCrypt.hashpw(business.getPassword()); // encrypt
+        business.setPassword(hash); // before insert password into database, encrypt and replace original password.
+//        System.out.println(hash);
+//        System.out.println(business.getPassword());
         businessMapper.insert(business);
     }
 
@@ -130,7 +130,8 @@ public class BusinessService {
         if (ObjectUtil.isNull(dbBusiness)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!account.getPassword().equals(dbBusiness.getPassword())) {   // compare password is same or not
+        //BCrypt.checkpw(account.getPassword(),dbBusiness.getPassword());
+        if (!BCrypt.checkpw(account.getPassword(),dbBusiness.getPassword())) {   // compare password is same or not
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
         // generate token
