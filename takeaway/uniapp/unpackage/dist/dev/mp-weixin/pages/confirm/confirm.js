@@ -276,18 +276,18 @@ var _default = {
       amount: {},
       business: {},
       address: {},
-      payType: '支付宝',
+      payType: 'Alipay',
       range: [{
-        "value": '支付宝',
-        "text": "支付宝"
+        "value": 'Alipay',
+        "text": "Alipay"
       }, {
-        "value": '微信支付',
-        "text": "微信支付"
+        "value": 'WeChat Pay',
+        "text": "WeChat Pay"
       }]
     };
   },
   onShow: function onShow() {
-    // 获取缓存的数据
+    // Get cached data
     var xmOrders = uni.getStorageSync('xm-orders');
     this.businessId = xmOrders.businessId || 0;
     this.addressId = xmOrders.addressId || 0;
@@ -300,7 +300,7 @@ var _default = {
       if (!this.addressId) {
         uni.showToast({
           icon: 'error',
-          title: '请选择地址'
+          title: 'Please select an address'
         });
         return;
       }
@@ -317,7 +317,7 @@ var _default = {
           uni.removeStorageSync('xm-orders'); //clean cache
           uni.showToast({
             icon: "success",
-            title: '操作成功'
+            title: 'Operation successful'
           });
           setTimeout(function () {
             uni.switchTab({

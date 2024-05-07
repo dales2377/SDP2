@@ -21,26 +21,26 @@
 				<view style="display: flex;">
 					<view class="category-item">
 						<image src="@/static/imgs/咖啡.png" mode="widthFix" style="width: 50%;"></image>
-						<text>奶茶饮品</text>
+						<text>Drinks</text>
 					</view>
 					<view class="category-item">
 						<image src="@/static/imgs/轻食.png" mode="widthFix" style="width: 50%;"></image>
-						<text>轻食简餐</text>
+						<text>Light Meals</text>
 					</view>
 					<view class="category-item">
 						<image src="@/static/imgs/汉堡.png" mode="widthFix" style="width: 50%;"></image>
-						<text>炸鸡汉堡</text>
+						<text>fast food</text>
 					</view>
 					<view class="category-item">
 						<image src="@/static/imgs/美食.png" mode="widthFix" style="width: 50%;"></image>
-						<text>特色美味</text>
+						<text>Special Deliciousness</text>
 					</view>
 				</view>
 			</view>
 
 			<!-- 商家列表 -->
 			<view class="box" style="color: orange; font-size: 32rpx; font-weight: bold; margin-bottom: 10rpx;">
-				热门商家
+				Merchants
 			</view>
 
 			<view>
@@ -54,14 +54,14 @@
 
 						<view style="display: flex;  color: #666; ">
 							<view style="flex: 1;">
-								<text style="color: #ff9800; font-weight: bold;">4.5分</text>
-								<text style="margin-left: 10rpx;">已售30</text>
+								<text style="color: #ff9800; font-weight: bold;">4.5</text>
+								<text style="margin-left: 10rpx;">30 sold</text>
 							</view>
-							<view style="flex: 1; text-align: right;">30分钟内送达</text>
+							<view style="flex: 1; text-align: right;">Delivered within 30 minutes</text>
 							</view>
 						</view>
 						
-						<view style="color: #ff9800;">免配送费</view>
+						<view style="color: #ff9800;">Free delivery</view>
 						
 						<view style="background-color: #ffd281; color: brown; border-radius: 4rpx; width: fit-content;
 							padding: 0 8rpx;">{{ item.info || '商家介绍' }}</view>

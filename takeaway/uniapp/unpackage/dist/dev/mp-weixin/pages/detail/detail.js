@@ -300,11 +300,11 @@ var _default = {
       goodsList: [],
       options: [{
         icon: 'cart',
-        text: '购物车',
+        text: 'Cart',
         info: 0
       }],
       buttonGroup: [{
-        text: '立即购买',
+        text: 'Buy Now',
         backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
         color: '#fff'
       }],
@@ -314,9 +314,9 @@ var _default = {
     };
   },
   onShow: function onShow() {
-    var allPages = getCurrentPages(); //获取当前页面栈的实例；
-    var lastPages = allPages.length - 1; // 获得倒数第二个元素的索引；
-    var option = allPages[lastPages].options; // 获得上个页面传递的参数；
+    var allPages = getCurrentPages(); // Get instances of the current page stack
+    var lastPages = allPages.length - 1; // Get the index of the second last element
+    var option = allPages[lastPages].options; // Get the parameters passed by the previous page
     this.businessId = option.businessId;
     this.load();
     this.loadCart();
@@ -326,7 +326,7 @@ var _default = {
       if (this.cartList.length === 0) {
         uni.showToast({
           icon: 'error',
-          title: '请选择商品'
+          title: 'Please select a product'
         });
         return;
       }
@@ -343,7 +343,7 @@ var _default = {
         if (res.code === '200') {
           uni.showToast({
             icon: 'success',
-            title: '操作成功'
+            title: 'Operation successful'
           });
           _this.loadCart();
         } else {
@@ -368,7 +368,7 @@ var _default = {
       });
     },
     onClick: function onClick() {
-      // 点击购物车图标触发
+      // Triggered when the shopping cart icon is clicked
       this.$refs.popup.open('bottom');
     },
     loadCart: function loadCart() {
@@ -385,7 +385,6 @@ var _default = {
         businessId: this.businessId
       }).then(function (res) {
         _this3.amount = res.data || {};
-        console.log(_this3.amount);
       });
     },
     addCart: function addCart(goods) {
@@ -399,7 +398,7 @@ var _default = {
         if (res.code === '200') {
           uni.showToast({
             icon: 'success',
-            title: '加入成功'
+            title: 'Added successfully'
           });
           _this4.loadCart();
         } else {

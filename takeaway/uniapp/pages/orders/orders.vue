@@ -14,20 +14,20 @@
 					<view style="display: flex; align-items: center; grid-gap: 20rpx; margin-bottom: 10rpx;" @click="goOrdersItem(Item.id)">
 						<view><image style="display: block; width: 160rpx; height: 160rpx; border-radius: 10rpx;" :src="item.cover"></image></view>
 						<view style="flex: 1;">{{ item.name }}</view>
-						<view>实付￥<text style="font-size: 36rpx; font-weight: bold; color: red;">{{ item.actual }}</text></view>
+						<view>Actual Pay￥<text style="font-size: 36rpx; font-weight: bold; color: red;">{{ item.actual }}</text></view>
 					</view>
 					<view style="display: flex; min-height: 40rpx;">
 						<view style="flex: 1;">
 							<view v-if="item.status === '已取消' || item.status === '已完成' || item.status === '已退款'" @click="del(item.id)">
 								<uni-icons type="trash" size="16" color="#666" style="position: relative; top: 2rpx;"></uni-icons>
-								<text style="font-size: 24rpx; color: #666;">删除</text>
+								<text style="font-size: 24rpx; color: #666;">Delete</text>
 							</view>
 						 </view>
 						 <view style="flex: 1; text-align: right;">
-							 <uni-tag v-if="item.status === '待支付'" text="支付" size="mini" type="primary" @click="changeStatus(item, '待发货')"></uni-tag>
-							 <uni-tag v-if="item.status === '待发货'" text="申请退款" size="mini" type="error" style="margin-right: 10rpx;" @click="changeStatus(item, '已退款')"></uni-tag>
-							  <uni-tag v-if="item.status === '待收货'" text="确认收货" size="mini" type="warning" @click="changeStatus(item, '待评价')"></uni-tag>
-							  <uni-tag v-if="item.status === '待评价'" text="评价" size="mini" type="royal"></uni-tag>
+							 <uni-tag v-if="item.status === '待支付'" text="payment" size="mini" type="primary" @click="changeStatus(item, '待发货')"></uni-tag>
+							 <uni-tag v-if="item.status === '待发货'" text="request refund" size="mini" type="error" style="margin-right: 10rpx;" @click="changeStatus(item, '已退款')"></uni-tag>
+							  <uni-tag v-if="item.status === '待收货'" text="confirm receiption" size="mini" type="warning" @click="changeStatus(item, '待评价')"></uni-tag>
+							  <uni-tag v-if="item.status === '待评价'" text="comment" size="mini" type="royal"></uni-tag>
 						 </view>
 					</view>
 				</view>

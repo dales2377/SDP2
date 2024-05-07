@@ -213,7 +213,7 @@ var _default = {
         if (res.code === '200') {
           uni.showToast({
             icon: "success",
-            title: '操作成功'
+            title: 'Operation successful'
           });
           _this.load();
         } else {

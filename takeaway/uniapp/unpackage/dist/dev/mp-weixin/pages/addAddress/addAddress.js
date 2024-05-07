@@ -45,19 +45,19 @@ var _default = {
         address: {
           rules: [{
             required: true,
-            errorMessage: '请填写地址'
+            errorMessage: 'Please fill in the address'
           }]
         },
         user: {
           rules: [{
             required: true,
-            errorMessage: '请填写联系人'
+            errorMessage: 'Please fill in the contact person'
           }]
         },
         phone: {
           rules: [{
             required: true,
-            errorMessage: '请填写联系方式'
+            errorMessage: 'Please fill in the contact number'
           }]
         }
       }
@@ -75,7 +75,7 @@ var _default = {
   methods: {
     saveAddress: function saveAddress() {
       var _this2 = this;
-      // 验证
+      // Validation
       this.$refs.formRef.validate().then(function (res) {
         _this2.$request.request({
           method: _this2.form.id ? 'PUT' : 'POST',
@@ -84,7 +84,7 @@ var _default = {
         }).then(function (res) {
           if (res.code === '200') {
             uni.showToast({
-              title: '操作成功'
+              title: 'Operation successful'
             });
             uni.navigateBack();
           } else {

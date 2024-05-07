@@ -1,8 +1,8 @@
 <template>
 	<view style="padding: 20rpx;">
 		<view class="box" style="margin-bottom: 20rpx;">
-			<view style="margin-bottom: 10rpx;">订单编号：{{ orders.orderNo }}</view>
-			<view style="font-size: 24rpx; color: #888;">下单时间：{{ orders.time }}</view>
+			<view style="margin-bottom: 10rpx;">orderNo：{{ orders.orderNo }}</view>
+			<view style="font-size: 24rpx; color: #888;">time：{{ orders.time }}</view>
 		</view>
 		<!-- 商品和金额信息 -->
 		<view class="box" style="margin: 20rpx 0;">
@@ -26,7 +26,7 @@
 			<!-- 显示优惠和总金额信息 -->
 			<view v-if="orders.discount">
 				<view style="text-align: right;">
-					<text>已优惠</text>
+					<text>discount</text>
 					<text style="color: red;">￥{{ orders.discount }}</text>
 					<text style="margin-left: 20rpx;">小计</text>
 					<text style="color: red; font-size: 36rpx; font-weight: bold;">￥{{ orders.actual }}</text>
