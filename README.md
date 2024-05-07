@@ -2,6 +2,8 @@
 1. mysql5.7
 2. jdk1.8
 3. nodejs 14 | 16
+4. install Hbuilder X
+5. install Wechat Developer tools
 
 # How to running backend system 
 1. Download and unzip thses code in you want.
@@ -32,6 +34,18 @@ that will install the modules used in this project.
    <img width="1280" alt="image" src="https://github.com/dales2377/SDP2/assets/96338681/675cd1e5-34ea-440d-bff8-8d79491b1266">
 
 9. running Springboot and Vue, the website link is http://localhost:8080/login
+
+# How to running frontend system 
+1. Install Hbuilder X
+```
+ https://dcloud.io/hbuilderx.html
+```
+2. Insatll WeChat Developer Tools
+3. Open Hbuilder X choose File >> Open Directory
+   <img width="1280" alt="image" src="https://github.com/dales2377/SDP2/assets/96338681/3028952e-b744-4dc6-bb20-551f11c83bd8">
+4. Then choose Run >> mini program >> Wechat devtools
+<img width="1280" alt="image" src="https://github.com/dales2377/SDP2/assets/96338681/49cbf201-a984-4a76-b222-77152c7c3963">
+
 
 
 
