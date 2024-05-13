@@ -6,7 +6,7 @@
 
     <sql id="Base_Column_List">
         id
-        ,order_no,time,pay_time,pay_type,status,business_id,address,phone,user_id,amount,discount,actual,comment,cover,user,name,payType
+        ,order_no,time,pay_time,status,business_id,address,phone,user_id,amount,discount,actual,comment,cover,user,name,payType
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Orders">
@@ -45,10 +45,10 @@
                business.name as businessName,
                user.name     as userName
         from orders
-                left join business
-                    on orders.business_id = business.id
-                left join user
-                    on orders.user_id = user.id
+                 left join business
+                           on orders.business_id = business.id
+                 left join user
+                           on orders.user_id = user.id
         where orders.id = #{id}
     </select>
 

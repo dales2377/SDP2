@@ -1,21 +1,21 @@
 <template>
 	<view style="padding: 40rpx;">
 		<view style="padding: 20rpx; margin: 80rpx 0; background-color: #fff; box-shadow: 0 2rpx 10rpx rgba(0,0,0,.1); border-radius: 10rpx;">
-			<view style="margin: 50rpx 30rpx; font-size: 40rpx;">欢迎登录</view>
+			<view style="margin: 50rpx 30rpx; font-size: 40rpx;">Welcome</view>
 			<uni-forms ref="form" :modelValue="form" :rules="rules" validateTrigger='blur'>
 				<uni-forms-item name="username" required>
-					<uni-easyinput prefixIcon="person" v-model="form.username" placeholder="请输入账号" />
+					<uni-easyinput prefixIcon="person" v-model="form.username" placeholder="please enter your username" />
 				</uni-forms-item>
 				<uni-forms-item name="password" required>
-					<uni-easyinput prefixIcon="locked" v-model="form.password" placeholder="请输入密码" />
+					<uni-easyinput prefixIcon="locked" v-model="form.password" placeholder="please enter your password" />
 				</uni-forms-item>
 				<uni-forms-item>
-					<button @click="login()" style="background-color: #ffd100; border-color: #ffd100; height: 70rpx; line-height: 70rpx;">登 录</button>
+					<button @click="login()" style="background-color: #ffd100; border-color: #ffd100; height: 70rpx; line-height: 70rpx;">Login</button>
 				</uni-forms-item>
-				<uni-forms-item>
+				<!-- <uni-forms-item>
 					<view style="text-align: right;">还没有账号？去 <navigator style="display: inline-block; color: dodgerblue; 
 						margin-left: 4rpx;" url="/pages/register/register">注册</navigator></view>
-				</uni-forms-item>
+				</uni-forms-item> -->
 			</uni-forms>
 		</view>
 	</view>
@@ -36,13 +36,13 @@
 							// 校验 username 不能为空
 							{
 								required: true,
-								errorMessage: '请输入账号',
+								errorMessage: 'username is required',
 							},
 							// 对username字段进行长度验证
 							{
 								minLength: 3,
 								maxLength: 10,
-								errorMessage: '账号长度在 {minLength} 到 {maxLength} 个字符',
+								errorMessage: 'username length between {minLength} to {maxLength} chars',
 							}
 						],
 					},
@@ -50,12 +50,12 @@
 						rules:[
 							{
 								required: true,
-								errorMessage: '请输入密码',
+								errorMessage: 'password is required',
 							},
 							{
 								minLength: 3,
 								maxLength: 10,
-								errorMessage: '密码长度在 {minLength} 到 {maxLength} 个字符',
+								errorMessage: 'password length between {minLength} to {maxLength} chars',
 							}
 						],
 					}
@@ -69,7 +69,7 @@
 						if (res.code === '200') {
 							uni.showToast({
 								icon: 'success',
-								title: '登录成功'
+								title: 'login success'
 							})
 							uni.setStorageSync('xm-user', res.data)
 							

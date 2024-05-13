@@ -22,9 +22,24 @@ public class Comment implements Serializable {
     private Integer goodsId;
     /** 订单ID */
     private Integer orderId;
-
+    /** 评论时间 */
     private String time;
+    /** 用户名称 */
+    private String userName;
+    /** 商家名称 */
+    private String businessName;
+    /** 订单编号 */
+    private String orderNo;
 
+    private String userAvatar;
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
 
     public Integer getId() {
         return id;
@@ -88,5 +103,29 @@ public class Comment implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 }

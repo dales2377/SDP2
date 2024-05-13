@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.entity.Comment;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -33,5 +34,8 @@ public interface CommentMapper {
      * 查询所有
      */
     List<Comment> selectAll(Comment comment);
+
+    @Select("select * from comment where business_id = #{businessId}")
+    List<Comment> selectByBusinessId(Integer businessId);
 
 }

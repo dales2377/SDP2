@@ -99,7 +99,7 @@ var components
 try {
   components = {
     uniTag: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 122))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 134))
     },
   }
 } catch (e) {
@@ -215,12 +215,13 @@ var _default = {
   data: function data() {
     return {
       orders: {},
-      ordersItemList: []
+      ordersItemList: [],
+      orderId: 0 // orderId 初始化
     };
   },
   onLoad: function onLoad(option) {
-    var orderId = option.orderId;
-    this.load(orderId);
+    this.orderId = option.orderId;
+    this.load(this.orderId);
   },
   methods: {
     changeStatus: function changeStatus(orders, status) {
@@ -233,7 +234,7 @@ var _default = {
             icon: "success",
             title: '操作成功'
           });
-          _this.loadOrders();
+          _this.load(_this.orderId);
         } else {
           uni.showToast({
             icon: "error",
