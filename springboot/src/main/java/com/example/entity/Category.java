@@ -1,11 +1,23 @@
 package com.example.entity;
 
 public class Category {
-    private Integer id;
-    private String name;
-    private Integer businessId;
 
+    /**  ID */
+    private Integer id;
+    /** 名称 */
+    private String name;
+    /** 商家ID */
+    private Integer businessId;
+    /** 商家名称  */
     private String businessName;
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 
     public Integer getId() {
         return id;
@@ -29,13 +41,5 @@ public class Category {
 
     public void setBusinessId(Integer businessId) {
         this.businessId = businessId;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
     }
 }

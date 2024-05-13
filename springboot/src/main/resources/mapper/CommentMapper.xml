@@ -10,17 +10,21 @@
 
     <select id="selectAll" resultType="com.example.entity.Comment">
         select
-        <include refid="Base_Column_List" />
+        comment.*, user.name as userName, user.avatar as userAvatar, business.name as businessName, orders.order_no as orderNo
         from comment
+        left join user
+        on comment.user_id = user.id
+        left join business
+        on comment.business_id = business.id
+        left join orders
+        on comment.order_id = orders.id
         <where>
             <if test="id != null"> and id = #{id}</if>
-            <if test="content != null"> and content like concat('%', #{content}, '%')</if>
-            <if test="star != null"> and star = #{star}</if>
-            <if test="userId != null"> and user_id = #{userId}</if>
-            <if test="businessId != null"> and business_id = #{businessId}</if>
-            <if test="goodsId != null"> and goods_id = #{goodsId}</if>
-            <if test="orderId != null"> and order_id = #{orderId}</if>
-            <if test="time != null"> and time like concat('%', #{time}, '%')</if>
+            <if test="content != null"> and comment.content like concat('%', #{content}, '%')</if>
+            <if test="userName != null"> and user.name  like concat('%', #{userName}, '%')</if>
+            <if test="orderNo != null"> and orders.order_no  = #{orderNo}</if>
+            <if test="businessId != null"> and comment.business_id  = #{businessId}</if>
+            <if test="userId != null"> and comment.user_id  = #{userId}</if>
         </where>
         order by id desc
     </select>

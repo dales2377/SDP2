@@ -1,7 +1,17 @@
 package com.example.entity;
-public class Business extends Account{
 
+/**
+ * 商家
+ */
+public class Business extends Account {
+
+    /**
+     * 主键
+     */
     private Integer id;
+    /**
+     * 用户名
+     */
     private String username;
     private String password;
     private String name;
@@ -14,6 +24,35 @@ public class Business extends Account{
     private String status;
     private String timeRange;
     private String type;
+    private Double score;
+    private Boolean isCollect;
+
+    // 总销售数量
+    private Integer nums;
+
+    public Integer getNums() {
+        return nums;
+    }
+
+    public void setNums(Integer nums) {
+        this.nums = nums;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
+    public Boolean getIsCollect() {
+        return isCollect;
+    }
+
+    public void setIsCollect(Boolean isCollect) {
+        this.isCollect = isCollect;
+    }
 
     public Integer getId() {
         return id;

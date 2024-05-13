@@ -91,16 +91,16 @@
 				form.status = status
 				this.$request.put('/orders/update', form).then(res => {
 					if (res.code === '200') {
-					  uni.showToast({
-					    icon: "success",
-					    title: '操作成功'
-					  })
-					  this.loadOrders()
+						uni.showToast({
+							icon: "success",
+							title: '操作成功'
+						})
+						this.loadOrders()
 					} else {
-					  uni.showToast({
-					    icon: "error",
-					    title: res.msg
-					  })
+						uni.showToast({
+							icon: "error",
+							title: res.msg
+						})
 					}
 				})
 			},

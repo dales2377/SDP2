@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.entity.Orders;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -34,4 +35,6 @@ public interface OrdersMapper {
      */
     List<Orders> selectAll(Orders orders);
 
+    @Select("select * from orders where business_id = #{businessId} and (status = '待评价' or status = '已完成')")
+    List<Orders> selectUsageByBusinessId(Integer businessId);
 }

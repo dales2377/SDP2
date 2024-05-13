@@ -103,7 +103,7 @@ public class AdminService {
         if (!account.getPassword().equals(dbAdmin.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
-        //make token
+        // 生成token
         String tokenData = dbAdmin.getId() + "-" + RoleEnum.ADMIN.name();
         String token = TokenUtils.createToken(tokenData, dbAdmin.getPassword());
         dbAdmin.setToken(token);
@@ -111,7 +111,7 @@ public class AdminService {
     }
 
     /**
-     * register
+     * 注册
      */
     public void register(Account account) {
         Admin admin = new Admin();
@@ -120,13 +120,10 @@ public class AdminService {
     }
 
     /**
-     * change password
+     * 修改密码
      */
-
     public void updatePassword(Account account) {
         Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
-//        String hashpw1 = BCrypt.hashpw(account.getPassword());
-//        String hashpw2 = BCrypt.hashpw(dbAdmin.getPassword());
         if (ObjectUtil.isNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }

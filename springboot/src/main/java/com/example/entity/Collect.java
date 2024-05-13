@@ -1,13 +1,6 @@
 package com.example.entity;
 
-import java.io.Serializable;
-
-/**
- * 收藏信息
- */
-public class Collect implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Collect {
     /** ID */
     private Integer id;
     /** 商家ID */
@@ -17,6 +10,36 @@ public class Collect implements Serializable {
     private Integer userId;
     /** 收藏时间 */
     private String time;
+    /** 商家 */
+    private String businessName;
+    /** 消费者 */
+    private String userName;
+
+    private Business business;
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Integer getId() {
         return id;
@@ -49,5 +72,4 @@ public class Collect implements Serializable {
     public void setTime(String time) {
         this.time = time;
     }
-
 }

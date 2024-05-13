@@ -13,6 +13,7 @@ import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -98,7 +99,7 @@ public class UserService {
      * login
      */
     public Account login(Account account) {
-        Account dbUser= this.selectByUsername(account.getUsername());
+        Account dbUser = this.selectByUsername(account.getUsername());
         if (ObjectUtil.isNull(dbUser)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
@@ -111,16 +112,21 @@ public class UserService {
         dbUser.setToken(token);
         return dbUser;
     }
-        private User selectByUsername(String username) {
-            User user = new User();
-            user.setUsername(username);
-            List<User> userList = this.selectAll(user);
-            return CollUtil.isEmpty(userList) ? null : userList.get(0);
+
+    private User selectByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        List<User> userList = this.selectAll(user);
+        return CollUtil.isEmpty(userList) ? null : userList.get(0);
     }
 
-        public void register(Account account) {
-            User user = new User();
-            BeanUtils.copyProperties(account, user);  // 拷贝 账号和密码2个属性
-            this.add(user);  // 添加账户信息
+    /**
+     * 用户注册
+     */
+    public void register(Account account) {
+        User user = new User();
+        BeanUtils.copyProperties(account, user);  // 拷贝 账号和密码2个属性
+        this.add(user);  // 添加账户信息
     }
+
 }

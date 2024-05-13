@@ -6,32 +6,32 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * User
+ * 操作user相关数据接口
  */
 public interface UserMapper {
 
     /**
-     * add
+     * 新增
      */
     int insert(User user);
 
     /**
-     * delete
+     * 删除
      */
     int deleteById(Integer id);
 
     /**
-     * update
+     * 修改
      */
     int updateById(User user);
 
     /**
-     * query by ID
+     * 根据ID查询
      */
     User selectById(Integer id);
 
     /**
-     * Select all
+     * 查询所有
      */
     List<User> selectAll(User user);
 

@@ -37,8 +37,6 @@ public class OrdersService {
     @Resource
     private OrdersItemService ordersItemService;
 
-
-
     /**
      * 新增
      */
@@ -52,6 +50,8 @@ public class OrdersService {
     @Transactional
     public void deleteById(Integer id) {
         ordersMapper.deleteById(id);
+        //删除订单详情
+        ordersItemService.deleteByOrderId(id);
     }
 
     /**
@@ -59,7 +59,7 @@ public class OrdersService {
      */
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
-            ordersMapper.deleteById(id);
+            this.deleteById(id);
         }
     }
 
@@ -109,7 +109,11 @@ public class OrdersService {
         List<Orders> list = ordersMapper.selectAll(orders);
         return PageInfo.of(list);
     }
-    // user make order in frontend
+
+    /**
+     * 前台用户下单
+     * @param ordersDTO
+     */
     @Transactional
     public void addOrder(OrdersDTO ordersDTO) {
         Integer businessId = ordersDTO.getBusinessId();
@@ -118,8 +122,8 @@ public class OrdersService {
         if (userId == null) {
             throw new CustomException(ResultCodeEnum.NO_AUTH);
         }
-        List<Cart> cartsList = cartService.selectUserCart(currentUser.getId(), businessId);
-        if (CollUtil.isEmpty(cartsList)) {
+        List<Cart> cartList = cartService.selectUserCart(currentUser.getId(), businessId);
+        if (CollUtil.isEmpty(cartList)) {
             throw new CustomException(ResultCodeEnum.NO_GOODS);
         }
         Orders orders = new Orders();
@@ -133,36 +137,40 @@ public class OrdersService {
         orders.setPhone(ordersDTO.getPhone());
         orders.setComment(ordersDTO.getComment());
 
-        // Goods info
+        // 设置商品信息
         AmountDTO amountDTO = cartService.calc(userId, businessId);
         orders.setAmount(amountDTO.getAmount());
         orders.setDiscount(amountDTO.getDiscount());
         orders.setActual(amountDTO.getActual());
 
-        // total goods numbers in cart
-        Integer nums = cartsList.stream().map(Cart::getNum).reduce(Integer::sum).orElse(0);
-        orders.setName(cartsList.get(0).getGoods().getName() + "等" + nums + "件商品");
-        orders.setCover(cartsList.get(0).getGoods().getImg());
+        // 得到购物车商品的总数
+        Integer nums = cartList.stream().map(Cart::getNum).reduce(Integer::sum).orElse(0);
+        orders.setName(cartList.get(0).getGoods().getName() + "等" + nums + "件商品");
+        orders.setCover(cartList.get(0).getGoods().getImg());
 
-        //order no.
-        orders.setOrderNo(IdUtil.getSnowflakeNextIdStr()); //Snowflake to generator id
-
-        //orderStatus
+        // 最后设置一个订单编号
+        orders.setOrderNo(IdUtil.getSnowflakeNextIdStr());  // 雪花算法生成唯一的ID作为订单号
+        // 设置订单状态
         orders.setStatus(OrderStatusEnum.NO_PAY.getValue());
         this.add(orders);
 
-        // Detail info of Order
-        for (Cart cart : cartsList) {
+        // 再设置订单的 详细信息
+        for (Cart cart : cartList) {
             OrdersItem ordersItem = new OrdersItem();
             ordersItem.setOrderId(orders.getId());
             ordersItem.setGoodsName(cart.getGoods().getName());
             ordersItem.setGoodsImg(cart.getGoods().getImg());
             ordersItem.setPrice(cart.getGoods().getActualPrice());
             ordersItem.setNum(cart.getNum());
+            ordersItem.setGoodsId(cart.getGoodsId());
             ordersItemService.add(ordersItem);
         }
 
-
+        // 清空购物车
         cartService.deleteByBusiness(businessId, userId);
+    }
+
+    public List<Orders> selectUsageByBusinessId(Integer businessId) {
+        return ordersMapper.selectUsageByBusinessId(businessId);
     }
 }

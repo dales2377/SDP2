@@ -46,7 +46,7 @@ public class WebController {
             account = adminService.login(account);
         } else if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
             account = businessService.login(account);
-        }else if (RoleEnum.USER.name().equals(account.getRole())) {
+        } else if (RoleEnum.USER.name().equals(account.getRole())) {
             account = userService.login(account);
         }
         return Result.success(account);
@@ -66,7 +66,7 @@ public class WebController {
 //        }
         if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
             businessService.register(account);
-        } if (RoleEnum.USER.name().equals(account.getRole())) {
+        } else  if (RoleEnum.USER.name().equals(account.getRole())) {
             userService.register(account);
         }
         return Result.success();

@@ -1,9 +1,5 @@
 package com.example.entity;
 
-import cn.hutool.crypto.digest.BCrypt;
-import cn.hutool.crypto.SecureUtil;
-import sun.security.krb5.KrbCryptoException;
-
 import java.io.Serializable;
 
 /**
@@ -56,10 +52,6 @@ public class Admin extends Account implements Serializable {
 
     @Override
     public void setPassword(String password) {
-        //use bcrypt
-//        BCrypt.hashpw(password);
-        // String salt = BCrypt.gensalt();
-        // this.password = BCrypt.hashpw(password, salt);
         this.password = password;
     }
 

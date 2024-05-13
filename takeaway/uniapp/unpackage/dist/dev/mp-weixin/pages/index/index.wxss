@@ -7,4 +7,7 @@
 	align-items: center;
 	grid-gap: 10rpx;
 }
+.uni-searchbar {
+	padding: 10rpx !important;
+}
 

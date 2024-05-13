@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import cn.hutool.crypto.digest.BCrypt;
-
 /**
  * 角色用户父类
  */
@@ -51,9 +49,6 @@ public class Account {
     }
 
     public void setPassword(String password) {
-
-//         String salt = BCrypt.gensalt();
-//         this.password = BCrypt.hashpw(password, salt);
         this.password = password;
     }
 

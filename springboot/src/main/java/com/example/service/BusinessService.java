@@ -5,9 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.digest.BCrypt;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
-import com.example.entity.Account;
-import com.example.entity.Admin;
-import com.example.entity.Business;
+import com.example.entity.*;
 import com.example.exception.CustomException;
 import com.example.mapper.BusinessMapper;
 import com.example.utils.TokenUtils;
@@ -17,21 +15,37 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-// Business method
+/**
+ * 商家相关的业务方法
+ */
 @Service
 public class BusinessService {
 
     @Resource
     private BusinessMapper businessMapper;
+
+    @Resource
+    private CollectService collectService;
+
+    @Resource
+    private CommentService commentService;
+
+    @Resource
+    private OrdersService ordersService;
+
+    @Resource
+    private OrdersItemService ordersItemService;
+
     /**
-     *  add
+     * 新增商家
      */
     public void add(Business business) {
         Business dbBusiness = this.selectByUsername(business.getUsername());
-        // No duplicate
+        // 如果根据新增数据的账号查询查到了数据  那么这个数据不允许插入，因为账号不能重复
         if (ObjectUtil.isNotEmpty(dbBusiness)) {
             throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);
         }
@@ -63,26 +77,50 @@ public class BusinessService {
      * update
      */
     public void updateById(Business business) {
-        // check data exist first
+        // 先根据id查询商家是否存在，商家不存在那就返回错误信息
         Business dbBusiness1 = selectById(business.getId());
         if (ObjectUtil.isEmpty(dbBusiness1)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
         Business dbBusiness2 = this.selectByUsername(business.getUsername());
-        //  prevent duplicate
+        //  根据当前更新的商家的账号查询数据库  如果数据库存在跟当前更新商家一样账号的数据  那么当前的更新是不合法的  数据重复了
         if (ObjectUtil.isNotEmpty(dbBusiness2) && !Objects.equals(dbBusiness2.getId(), business.getId())) {
             throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);
         }
         businessMapper.updateById(business);
     }
 
-
+    /**
+     * 查询所有
+     */
     public List<Business> selectAll(Business business) {
-        return businessMapper.selectAll(business);
-}
+        List<Business> businesses = businessMapper.selectAll(business);
+        for (Business b : businesses) {
+            wrapBusiness(b);
+        }
+        return businesses;
+    }
+
+    private void wrapBusiness(Business b) {
+        List<Comment> commentList = commentService.selectByBusinessId(b.getId());
+        double sum = commentList.stream().map(Comment::getStar).reduce(Double::sum).orElse(0D) + 5D;
+        // 5 + 4.5 / 1 + 1
+        double score = BigDecimal.valueOf(sum).divide(BigDecimal.valueOf(commentList.size() + 1), 1, BigDecimal.ROUND_UP).doubleValue();
+        b.setScore(score);
+
+        // 查出所有有效的订单
+        List<Orders> ordersList = ordersService.selectUsageByBusinessId(b.getId());
+        int nums = 0;
+        for (Orders orders : ordersList) {
+            List<OrdersItem> ordersItemList = ordersItemService.selectByOrderId(orders.getId());
+            // 聚合函数查出订单的商品数量
+            nums += ordersItemList.stream().map(OrdersItem::getNum).reduce(Integer::sum).orElse(0);
+        }
+        b.setNums(nums);
+    }
 
     /**
-     * search by account
+     * 根据账号查询
      */
     public Business selectByUsername(String username) {
         Business params = new Business();
@@ -92,9 +130,24 @@ public class BusinessService {
     }
 
     /**
-     * search by id
+     * 根据ID查询
      */
     public Business selectById(Integer id) {
+        Business business = this.selectBasicBusinessById(id);
+        if (business != null) {
+            Account currentUser = TokenUtils.getCurrentUser();
+            Collect collect = collectService.selectByUserIdAndBusinessId(currentUser.getId(), id);
+            business.setIsCollect(collect != null);
+        }
+        return business;
+    }
+
+    /**
+     * 查询基础的商家信息
+     * @param id 商家id
+     * @return 上机信息
+     */
+    public Business selectBasicBusinessById(Integer id) {
         Business params = new Business();
         params.setId(id);
         List<Business> list = this.selectAll(params);
@@ -115,15 +168,15 @@ public class BusinessService {
      */
     public void register(Account account) {
         Business business = new Business();
-        BeanUtils.copyProperties(account, business);  //  copy password and user from account parent class
-       if (ObjectUtil.isEmpty(account.getName())) {
-           business.setName(business.getUsername());
+        BeanUtils.copyProperties(account, business);  // 拷贝 账号和密码2个属性
+        if (ObjectUtil.isEmpty(account.getName())) {
+            business.setName(business.getUsername());
         }
-        this.add(business);  // add account info into database
+        this.add(business);  // 添加账户信息
     }
 
     /**
-     * login
+     * 商家登录
      */
     public Account login(Account account) {
         Business dbBusiness = this.selectByUsername(account.getUsername());
@@ -160,12 +213,13 @@ public class BusinessService {
      * auth check
      */
     public void checkBusinessAuth() {
-        Account currentUser = TokenUtils.getCurrentUser();  // get current token
-        if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())) {   //if is business
+        Account currentUser = TokenUtils.getCurrentUser();  // 获取当前的用户信息
+        if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())) {   // 如果是商家 的话
             Business business = selectById(currentUser.getId());
-            if (!"通过".equals(business.getStatus())) {   // only auth business allow to do that
+            if (!"通过".equals(business.getStatus())) {   // 未审核通过的商家  不允许添加数据
                 throw new CustomException(ResultCodeEnum.NO_AUTH);
             }
         }
     }
+
 }

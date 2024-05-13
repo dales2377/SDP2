@@ -1,20 +1,13 @@
 package com.example.entity;
 
-import java.io.Serializable;
-
-/**
- * 广告信息
- */
-public class Banner implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Banner {
     /** ID */
     private Integer id;
     /** 图片 */
     private String img;
     /** 商家ID */
     private Integer businessId;
-
+    /**  商家名称 */
     private String businessName;
 
     public Integer getId() {

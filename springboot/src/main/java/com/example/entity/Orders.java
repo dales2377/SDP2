@@ -43,9 +43,9 @@ public class Orders implements Serializable {
     private String cover;
     /** 名称 */
     private String name;
-
+    /** 商家名称 */
     private String businessName;
-
+    /** 消费者名称 */
     private String userName;
 
     public Integer getId() {

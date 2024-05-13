@@ -1,18 +1,43 @@
 package com.example.entity;
 
-import java.math.BigDecimal;
-
 public class Cart {
-    private Integer id; // cart id
+    /**
+     * ID
+     */
+    private Integer id;
+    /**
+     * 商品ID
+     */
     private Integer goodsId;
-    private Integer num; // goods number
+    /**
+     * 数量
+     */
+    private Integer num;
+    /**
+     * 用户ID
+     */
     private Integer userId;
     private Integer businessId;
-    private Goods goods;// get goods info
-    private BigDecimal price;
-    private BigDecimal actualPrice;
+
+    private Goods goods;
 
     private Business business;
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
 
     public Integer getId() {
         return id;
@@ -53,37 +78,4 @@ public class Cart {
     public void setBusinessId(Integer businessId) {
         this.businessId = businessId;
     }
-
-    public Goods getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Goods goods) {
-        this.goods = goods;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(BigDecimal actualPrice) {
-        this.actualPrice = actualPrice;
-    }
-
-    public Business getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(Business business) {
-        this.business = business;
-    }
 }
-

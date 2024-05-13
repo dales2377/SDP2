@@ -3,7 +3,12 @@ package com.example.entity;
 import java.math.BigDecimal;
 
 public class AmountDTO {
+    // 总价
     private BigDecimal amount;
+    // 优惠金额
+    private BigDecimal discount;
+    // 实际价格
+    private BigDecimal actual;
 
     public BigDecimal getAmount() {
         return amount;
@@ -28,9 +33,4 @@ public class AmountDTO {
     public void setActual(BigDecimal actual) {
         this.actual = actual;
     }
-
-    private BigDecimal discount;
-
-    private BigDecimal actual;
-
 }

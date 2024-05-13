@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
 
-
+/**
+ * 文件接口
+ */
 @RestController
 @RequestMapping("/files")
 public class FileController {
@@ -27,7 +29,9 @@ public class FileController {
     @Value("${ip:localhost}")
     private String ip;
 
-    // file upload
+    /**
+     * 文件上传
+     */
     @PostMapping("/upload")
     public Result upload(MultipartFile file) {
         String flag;
@@ -40,7 +44,7 @@ public class FileController {
             if (!FileUtil.isDirectory(filePath)) {
                 FileUtil.mkdir(filePath);
             }
-            // storage file name rule
+            // 文件存储形式：时间戳-文件名
             FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);  // ***/manager/files/1697438073596-avatar.png
             System.out.println(fileName + "--上传成功");
 
@@ -83,6 +87,7 @@ public class FileController {
      */
     @DeleteMapping("/{flag}")
     public void delFile(@PathVariable String flag) {
+        List<String> fileNames = FileUtil.listFileNames(filePath);
         FileUtil.del(filePath + flag);
         System.out.println("删除文件" + flag + "成功");
     }

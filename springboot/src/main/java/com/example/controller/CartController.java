@@ -6,6 +6,7 @@ import com.example.entity.Cart;
 import com.example.service.CartService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class CartController {
         cartService.deleteByBusiness(businessId, userId);
         return Result.success();
     }
+
     /**
      * 批量删除
      */

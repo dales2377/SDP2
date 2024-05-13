@@ -70,16 +70,22 @@ public class CartService {
      */
     public List<Cart> selectAll(Cart cart) {
         List<Cart> cartList = cartMapper.selectAll(cart);
-        for (Cart c : cartList) { //collect goods info to cart
+        for (Cart c : cartList) {   // 设置购物车的商品信息
             Goods goods = goodsService.selectById(c.getGoodsId());
             c.setGoods(goods);
-            // query business info
+            // 查询商家的信息
             Business business = businessService.selectById(c.getBusinessId());
             c.setBusiness(business);
         }
         return cartList;
     }
-// query user all goods info in one of business
+
+    /**
+     * 查询出用户在某商家的所有购物商品信息
+     * @param userId
+     * @param businessId
+     * @return
+     */
     public List<Cart> selectUserCart(Integer userId, Integer businessId) {
         Cart cart = new Cart();
         cart.setUserId(userId);
@@ -95,6 +101,7 @@ public class CartService {
         List<Cart> list = selectAll(cart);
         return PageInfo.of(list);
     }
+
     // 计算购物车的总金额
     public AmountDTO calc(Integer userId, Integer businessId) {
         Cart cart = new Cart();

@@ -100,8 +100,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uniSearchBar: function () {
+      return Promise.all(/*! import() | uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.vue */ 159))
+    },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 119))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 170))
     },
   }
 } catch (e) {
@@ -239,6 +242,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -252,6 +257,17 @@ var _default = {
     this.load();
   },
   methods: {
+    goBusiness: function goBusiness(type) {
+      uni.navigateTo({
+        url: '/pages/categoryBusiness/categoryBusiness?type=' + type
+      });
+    },
+    search: function search(res) {
+      var value = res.value;
+      uni.navigateTo({
+        url: '/pages/search/search?name=' + value
+      });
+    },
     goToDeatil: function goToDeatil(businessId) {
       uni.navigateTo({
         url: '/pages/detail/detail?businessId=' + businessId

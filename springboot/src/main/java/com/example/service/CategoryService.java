@@ -20,13 +20,15 @@ public class CategoryService {
     @Resource
     private CategoryMapper categoryMapper;
 
-    @Resource BusinessService businessService;
+    @Resource
+    private BusinessService businessService;
 
     /**
      * 新增
      */
     public void add(Category category) {
-        businessService.checkBusinessAuth(); //check auth
+        // 校验权限
+        businessService.checkBusinessAuth();
 
         Account currentUser = TokenUtils.getCurrentUser();
         if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())){ // add default value with current user id
@@ -39,7 +41,8 @@ public class CategoryService {
      * 删除
      */
     public void deleteById(Integer id) {
-        businessService.checkBusinessAuth(); //check auth
+        // 校验权限
+        businessService.checkBusinessAuth();
         categoryMapper.deleteById(id);
     }
 
@@ -47,7 +50,8 @@ public class CategoryService {
      * 批量删除
      */
     public void deleteBatch(List<Integer> ids) {
-        businessService.checkBusinessAuth(); //check auth
+        // 校验权限
+        businessService.checkBusinessAuth();
         for (Integer id : ids) {
             categoryMapper.deleteById(id);
         }
@@ -57,7 +61,8 @@ public class CategoryService {
      * 修改
      */
     public void updateById(Category category) {
-        businessService.checkBusinessAuth(); //check auth
+        // 校验权限
+        businessService.checkBusinessAuth();
         categoryMapper.updateById(category);
     }
 
@@ -72,11 +77,11 @@ public class CategoryService {
      * 查询所有
      */
     public List<Category> selectAll(Category category) {
-        // get current token
+        // 拿到当前的登录用户信息
         Account currentUser = TokenUtils.getCurrentUser();
         String role = currentUser.getRole();
-        if (RoleEnum.BUSINESS.name().equals(role)) { //limit role
-            category.setBusinessId(currentUser.getId());//limit by id
+        if (RoleEnum.BUSINESS.name().equals(role)) {  // 如果是商家的话   只能查询自己的分类
+            category.setBusinessId(currentUser.getId());  // 设置商家自己的Id作为查询条件
         }
         return categoryMapper.selectAll(category);
     }
@@ -85,11 +90,11 @@ public class CategoryService {
      * 分页查询
      */
     public PageInfo<Category> selectPage(Category category, Integer pageNum, Integer pageSize) {
-        // get current token
+        // 拿到当前的登录用户信息
         Account currentUser = TokenUtils.getCurrentUser();
         String role = currentUser.getRole();
-        if (RoleEnum.BUSINESS.name().equals(role)) { //limit role
-            category.setBusinessId(currentUser.getId());//limit by id
+        if (RoleEnum.BUSINESS.name().equals(role)) {  // 如果是商家的话   只能查询自己的分类
+            category.setBusinessId(currentUser.getId());  // 设置商家自己的Id作为查询条件
         }
         PageHelper.startPage(pageNum, pageSize);
         List<Category> list = categoryMapper.selectAll(category);

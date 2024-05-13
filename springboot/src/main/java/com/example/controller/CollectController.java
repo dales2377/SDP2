@@ -28,6 +28,12 @@ public class CollectController {
         return Result.success();
     }
 
+    @PostMapping("/saveCollect")
+    public Result saveCollect(@RequestBody Collect collect) {
+        collectService.saveCollect(collect);
+        return Result.success();
+    }
+
     /**
      * 删除
      */
@@ -80,7 +86,6 @@ public class CollectController {
     public Result selectPage(Collect collect,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize) {
-
         PageInfo<Collect> page = collectService.selectPage(collect, pageNum, pageSize);
         return Result.success(page);
     }

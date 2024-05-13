@@ -12,7 +12,7 @@ public class Goods {
     private String name;
     /** 价格 */
     private BigDecimal price;
-
+    /** 打折之后的价格 */
     private BigDecimal actualPrice;
     /** 图片 */
     private String img;
@@ -38,6 +38,24 @@ public class Goods {
     private String businessName;
 
     private String categoryName;
+
+    private Integer saleCount;
+
+    public Integer getSaleCount() {
+        return saleCount;
+    }
+
+    public void setSaleCount(Integer saleCount) {
+        this.saleCount = saleCount;
+    }
+
+    public BigDecimal getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
+    }
 
     public Integer getId() {
         return id;
@@ -157,13 +175,5 @@ public class Goods {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    public BigDecimal getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(BigDecimal actualPrice) {
-        this.actualPrice = actualPrice;
     }
 }

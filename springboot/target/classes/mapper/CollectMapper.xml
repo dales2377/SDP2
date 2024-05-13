@@ -10,11 +10,16 @@
 
     <select id="selectAll" resultType="com.example.entity.Collect">
         select
-        <include refid="Base_Column_List" />
+        collect.*, business.name as businessName, user.name as userName
         from collect
+        left join business
+        on collect.business_id = business.id
+        left join user
+        on collect.user_id = user.id
         <where>
             <if test="id != null"> and id = #{id}</if>
             <if test="businessId != null"> and business_id = #{businessId}</if>
+            <if test="userId != null"> and user_id = #{userId}</if>
         </where>
         order by id desc
     </select>

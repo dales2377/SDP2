@@ -73,8 +73,8 @@
 								title: '注册成功'
 							})
 							
-							setTimeout(() => { //设置延迟到通知结束
-								// 跳转登录页面和菜单栏不同
+							setTimeout(() => {
+								// 跳转登录页面
 								uni.navigateTo({
 									url: '/pages/login/login'
 								})

@@ -38,6 +38,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Resource
     private UserService userService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 1. 从http请求的header中获取token
