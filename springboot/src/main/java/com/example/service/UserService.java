@@ -26,6 +26,12 @@ import java.util.Objects;
 @Service
 public class UserService {
 
+    @Value("${server.port:9090}")
+    private String port;
+
+    @Value("${ip:localhost}")
+    private String ip;
+
     @Resource
     private UserMapper userMapper;
 
@@ -103,7 +109,7 @@ public class UserService {
         if (ObjectUtil.isNull(dbUser)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!account.getPassword().equals(dbUser.getPassword())) {   // compare password is same or not
+        if (!account.getPassword().equals(dbUser.getPassword())) {   // 比较用户输入密码和数据库密码是否一致
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
         // generate token

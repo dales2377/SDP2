@@ -216,7 +216,7 @@ var _default = {
     return {
       orders: {},
       ordersItemList: [],
-      orderId: 0 // orderId 初始化
+      orderId: 0
     };
   },
   onLoad: function onLoad(option) {

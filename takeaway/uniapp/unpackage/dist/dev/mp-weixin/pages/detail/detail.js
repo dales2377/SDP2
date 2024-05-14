@@ -493,7 +493,10 @@ var _default = {
       this.$request.get('/goods/selectAll', {
         categoryId: categoryId
       }).then(function (res) {
-        _this7.goodsList = res.data || [];
+        var filteredData = res.data.filter(function (item) {
+          return item.status === '上架';
+        });
+        _this7.goodsList = filteredData || [];
       });
     }
   }

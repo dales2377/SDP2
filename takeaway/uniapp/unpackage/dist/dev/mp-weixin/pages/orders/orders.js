@@ -222,11 +222,17 @@ var _default = {
       current: 0,
       items: ['全部', '进行中', '待评价', '已退款'],
       ordersList: [],
-      user: uni.getStorageSync('xm-user')
+      user: uni.getStorageSync('xm-user'),
+      timer: null // 定时器
     };
   },
   onShow: function onShow() {
+    // this.loadOrders()
+    var that = this;
     this.loadOrders();
+    this.timer = setInterval(function () {
+      that.loadOrders();
+    }, 300000);
   },
   methods: {
     goComment: function goComment(orderId) {

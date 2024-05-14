@@ -58,7 +58,7 @@
 								<text style="color: #ff9800; font-weight: bold;">{{ item.score }}分</text>
 								<text style="margin-left: 10rpx;">已售{{ item.nums }}</text>
 							</view>
-							<!-- <view style="flex: 1; text-align: right;">30分钟内送达</text> -->
+							<view style="flex: 1; text-align: right;">30分钟内送达</text>
 							</view>
 						</view>
 						
@@ -118,7 +118,7 @@
 						let i = 0
 						this.notice = this.noticeList[i++].content
 						if (this.noticeList.length > 1) {
-							setInterval(() => { // 计时器
+							setInterval(() => {
 								if (i === this.noticeList.length) {
 									i = 0
 								}

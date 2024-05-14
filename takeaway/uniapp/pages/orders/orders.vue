@@ -53,11 +53,17 @@
 				current: 0,
 				items: ['全部', '进行中', '待评价', '已退款'],
 				ordersList: [],
-				user: uni.getStorageSync('xm-user')
+				user: uni.getStorageSync('xm-user'),
+				timer: null // 定时器
 			}
 		},
 		onShow() {
-			this.loadOrders()
+			// this.loadOrders()
+			let that = this;
+				this.loadOrders()
+				this.timer = setInterval(function() {
+				that.loadOrders()
+				}, 300000)
 		},
 		methods: {
 			goComment(orderId) {

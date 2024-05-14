@@ -19,6 +19,7 @@
             <if test="goodsImg != null"> and goods_img like concat('%', #{goodsImg}, '%')</if>
             <if test="price != null"> and price = #{price}</if>
             <if test="num != null"> and num = #{num}</if>
+            <if test="goodsId != null"> and goods_id = #{goodsId}</if>
         </where>
         order by id desc
     </select>

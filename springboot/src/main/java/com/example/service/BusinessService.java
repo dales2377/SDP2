@@ -179,7 +179,7 @@ public class BusinessService {
      * 商家登录
      */
     public Account login(Account account) {
-        Business dbBusiness = this.selectByUsername(account.getUsername());
+        Account dbBusiness = this.selectByUsername(account.getUsername());
         if (ObjectUtil.isNull(dbBusiness)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }

@@ -288,7 +288,6 @@ var _default = {
           _this.notice = _this.noticeList[i++].content;
           if (_this.noticeList.length > 1) {
             setInterval(function () {
-              // 计时器
               if (i === _this.noticeList.length) {
                 i = 0;
               }
