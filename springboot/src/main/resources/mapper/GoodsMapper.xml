@@ -10,10 +10,10 @@
 
     <select id="selectAll" resultType="com.example.entity.Goods">
         select
-        goods.*, business.name as businessName, category.name as categoryName
+        goods.*, user.name as businessName, category.name as categoryName
         from goods
-        left join business
-        on goods.business_id = business.id
+        left join user
+        on goods.business_id = user.id
         left join category
         on goods.category_id = category.id
 

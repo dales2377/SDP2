@@ -29,10 +29,11 @@
         <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column prop="gender" label="性别"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
-        <el-table-column label="操作" align="center" width="180">
+        <el-table-column label="操作" align="center" width="280">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -100,6 +101,7 @@ export default {
   name: "USER",
   data() {
     return {
+      role: 'USER',
       tableData: [],  // data in table
       pageNum: 1,   // default page
       pageSize: 10,  // data number n each page
@@ -141,7 +143,10 @@ export default {
           this.$request({
             url: this.form.id ? '/user/update' : '/user/add',
             method: this.form.id ? 'PUT' : 'POST',
-            data: this.form
+            data: {
+              ...this.form,
+              role: this.role
+            }
           }).then(res => {
             if (res.code === '200') {  // save success
               this.$message.success('保存成功')
@@ -195,6 +200,7 @@ export default {
           pageSize: this.pageSize,
           username: this.username,
           name: this.name,
+          role: this.role
         }
       }).then(res => {
         this.tableData = res.data?.list
@@ -215,6 +221,24 @@ export default {
     },
     handleLicenseSuccess(response, file, fileList) {
       this.form.license = response.data
+    },
+    // 重置密码方法
+    resetPassword(id) {
+      this.$confirm('确定要重置该用户的密码吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request.post('/user/resetPassword', { id: id }).then(res => {
+          if (res.code === '200') {
+            this.$message.success('密码重置成功')
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消重置')
+      })
     }
   }
 }

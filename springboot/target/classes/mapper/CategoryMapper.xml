@@ -9,10 +9,10 @@
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Category">
-        select category.*, business.name as businessName
+        select category.*, user.name as businessName
         from category
-        left join business
-        on category.business_id = business.id
+        left join user
+        on category.business_id = user.id
         <where>
             <if test="id != null"> and category.id = #{id}</if>
             <if test="name != null"> and category.name like concat('%', #{name}, '%')</if>

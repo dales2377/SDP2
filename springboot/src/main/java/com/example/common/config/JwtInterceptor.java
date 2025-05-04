@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class JwtInterceptor implements HandlerInterceptor {
 
     private static final Logger log = LoggerFactory.getLogger(JwtInterceptor.class);
+    private static final String sign = "abcdefghijklmnapqrstuvwxyz";
 
     @Resource
     private AdminService adminService;
@@ -57,14 +58,15 @@ public class JwtInterceptor implements HandlerInterceptor {
             String userRole = JWT.decode(token).getAudience().get(0);
             String userId = userRole.split("-")[0];
             String role = userRole.split("-")[1];
-            // 根据userId查询数据库
-            if (RoleEnum.ADMIN.name().equals(role)) {
-                account = adminService.selectById(Integer.valueOf(userId));
-            } else if (RoleEnum.BUSINESS.name().equals(role)) { //business validate
-                account = businessService.selectById(Integer.valueOf(userId));
-            } else if (RoleEnum.USER.name().equals(role)) { //business validate
-                account = userService.selectById(Integer.valueOf(userId));
-            }
+//            // 根据userId查询数据库
+//            if (RoleEnum.ADMIN.name().equals(role)) {
+//                account = adminService.selectById(Integer.valueOf(userId));
+//            } else if (RoleEnum.BUSINESS.name().equals(role)) { //business validate
+//                account = businessService.selectById(Integer.valueOf(userId));
+//            } else if (RoleEnum.USER.name().equals(role)) { //business validate
+//                account = userService.selectById(Integer.valueOf(userId));
+//            }
+            account = userService.selectById(Integer.valueOf(userId));
         } catch (Exception e) {
             throw new CustomException(ResultCodeEnum.TOKEN_CHECK_ERROR);
         }
@@ -73,7 +75,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
         try {
             // 用户密码加签验证 token
-            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(account.getPassword())).build();
+            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(sign)).build();
             jwtVerifier.verify(token); // 验证token
         } catch (JWTVerificationException e) {
             throw new CustomException(ResultCodeEnum.TOKEN_CHECK_ERROR);

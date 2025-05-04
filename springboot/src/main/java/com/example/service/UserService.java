@@ -9,6 +9,7 @@ import com.example.entity.Business;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.mapper.UserMapper;
+import com.example.utils.BCryptUtils;
 import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -26,11 +27,7 @@ import java.util.Objects;
 @Service
 public class UserService {
 
-    @Value("${server.port:9090}")
-    private String port;
-
-    @Value("${ip:localhost}")
-    private String ip;
+    private static final String sign = "abcdefghijklmnapqrstuvwxyz";
 
     @Resource
     private UserMapper userMapper;
@@ -46,7 +43,10 @@ public class UserService {
         if (ObjectUtil.isEmpty(user.getName())) {
             user.setName(user.getUsername());
         }
-        user.setRole(RoleEnum.USER.name());
+        //密码加密
+        String newPwd = BCryptUtils.hashPassword(user.getPassword());
+        user.setPassword(newPwd);
+//        user.setRole(RoleEnum.USER.name());
         userMapper.insert(user);
     }
 
@@ -109,12 +109,13 @@ public class UserService {
         if (ObjectUtil.isNull(dbUser)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!account.getPassword().equals(dbUser.getPassword())) {   // 比较用户输入密码和数据库密码是否一致
+
+        if (!BCryptUtils.checkPassword(account.getPassword(), dbUser.getPassword())) {   // compare password is same or not
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
         // generate token
-        String tokenData = dbUser.getId() + "-" + RoleEnum.USER.name();
-        String token = TokenUtils.createToken(tokenData, dbUser.getPassword());
+        String tokenData = dbUser.getId() + "-" + dbUser.getRole();
+        String token = TokenUtils.createToken(tokenData, sign);
         dbUser.setToken(token);
         return dbUser;
     }
@@ -135,4 +136,27 @@ public class UserService {
         this.add(user);  // 添加账户信息
     }
 
+    /**
+     * 重置密码
+     * @param user
+     */
+    public void resetPassword(User user) {
+        userMapper.resetPassword(user);
+    }
+
+    /**
+     * 修改密码
+     * @param account
+     */
+    public void updatePassword(Account account) {
+        User user = this.selectByUsername(account.getUsername());
+        if (ObjectUtil.isNull(user)) {
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        if (!BCryptUtils.checkPassword(account.getPassword(), user.getPassword())) {
+            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
+        }
+        user.setPassword(BCryptUtils.hashPassword(account.getNewPassword()));
+        this.updateById(user);
+    }
 }

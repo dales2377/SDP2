@@ -2,6 +2,7 @@
   <div>
     <div class="search">
       <el-input placeholder="请输入账号查询" style="width: 200px" v-model="username"></el-input>
+      <el-input placeholder="请输入名称" style="width: 200px; margin-left: 10px" v-model="name"></el-input>
       <el-button type="info" plain style="margin-left: 10px" @click="load(1)">查询</el-button>
       <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
@@ -28,10 +29,11 @@
           </template>
         </el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
-        <el-table-column label="操作" align="center" width="180">
+        <el-table-column label="操作" align="center" width="280">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -50,7 +52,7 @@
     </div>
 
 
-    <el-dialog title="管理员" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
+    <el-dialog title="用户" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
         <el-form-item label="用户名" prop="username">
           <el-input v-model="form.username" placeholder="用户名"></el-input>
@@ -89,20 +91,28 @@
 
 <script>
 export default {
-  name: "Admin",
+  name: "ADMIN",
   data() {
     return {
-      tableData: [],  // 所有的数据
-      pageNum: 1,   // 当前的页码
-      pageSize: 10,  // 每页显示的个数
+      role: 'ADMIN',
+      tableData: [],  // data in table
+      pageNum: 1,   // default page
+      pageSize: 10,  // data number n each page
       total: 0,
       username: null,
+      name: null,
       fromVisible: false,
       form: {},
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
       rules: {
         username: [
           {required: true, message: '请输入账号', trigger: 'blur'},
+        ],
+        name: [
+          {required: true, message: '请输入名称', trigger: 'blur'},
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'},
         ]
       },
       ids: []
@@ -112,73 +122,78 @@ export default {
     this.load(1)
   },
   methods: {
-    handleAdd() {   // 新增数据
-      this.form = {}  // 新增数据的时候清空数据
-      this.fromVisible = true   // 打开弹窗
+    handleAdd() {   // add new data
+      this.form = {}  // clear from after submit
+      this.fromVisible = true   // show windows
     },
-    handleEdit(row) {   // 编辑数据
+    handleEdit(row) {   // edit
       this.form = JSON.parse(JSON.stringify(row))  // 给form对象赋值  注意要深拷贝数据
-      this.fromVisible = true   // 打开弹窗
+      this.fromVisible = true   // show windows
     },
-    save() {   // 保存按钮触发的逻辑  它会触发新增或者更新
+    save() {   // trigger of update or add
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.$request({
-            url: this.form.id ? '/admin/update' : '/admin/add',
+            url: this.form.id ? '/user/update' : '/user/add',
             method: this.form.id ? 'PUT' : 'POST',
-            data: this.form
+            data: {
+              ...this.form,
+              role: this.role
+            }
           }).then(res => {
-            if (res.code === '200') {  // 表示成功保存
+            if (res.code === '200') {  // save success
               this.$message.success('保存成功')
               this.load(1)
               this.fromVisible = false
             } else {
-              this.$message.error(res.msg)  // 弹出错误的信息
+              this.$message.error(res.msg)  // show error
             }
           })
         }
       })
     },
-    del(id) {   // 单个删除
+    del(id) {   // // delete single data
       this.$confirm('您确定删除吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/admin/delete/' + id).then(res => {
-          if (res.code === '200') {   // 表示操作成功
+        this.$request.delete('/user/delete/' + id).then(res => {
+          if (res.code === '200') {   // done
             this.$message.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            this.$message.error(res.msg)  // show error msg
           }
         })
       }).catch(() => {
       })
     },
-    handleSelectionChange(rows) {   // 当前选中的所有的行数据
+    handleSelectionChange(rows) {   // select all
       this.ids = rows.map(v => v.id)
     },
-    delBatch() {   // 批量删除
+    delBatch() {   // batch delete
       if (!this.ids.length) {
         this.$message.warning('请选择数据')
         return
       }
       this.$confirm('您确定批量删除这些数据吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/admin/delete/batch', {data: this.ids}).then(res => {
-          if (res.code === '200') {   // 表示操作成功
+        this.$request.delete('/user/delete/batch', {data: this.ids}).then(res => {
+          if (res.code === '200') {   // done
             this.$message.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            this.$message.error(res.msg)  // or error
           }
         })
       }).catch(() => {
       })
     },
-    load(pageNum) {  // 分页查询
+    load(pageNum) {  // divide to into different page
       if (pageNum) this.pageNum = pageNum
-      this.$request.get('/admin/selectPage', {
+      this.$request.get('/user/selectPage', {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
           username: this.username,
+          name: this.name,
+          role: this.role
         }
       }).then(res => {
         this.tableData = res.data?.list
@@ -187,15 +202,37 @@ export default {
     },
     reset() {
       this.username = null
+      this.name = null
       this.load(1)
     },
     handleCurrentChange(pageNum) {
       this.load(pageNum)
     },
     handleAvatarSuccess(response, file, fileList) {
-      // 把头像属性换成上传的图片的链接
+      // way to upload picture
       this.form.avatar = response.data
     },
+    handleLicenseSuccess(response, file, fileList) {
+      this.form.license = response.data
+    },
+    // 重置密码方法
+    resetPassword(id) {
+      this.$confirm('确定要重置该用户的密码吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request.post('/user/resetPassword', { id: id }).then(res => {
+          if (res.code === '200') {
+            this.$message.success('密码重置成功')
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消重置')
+      })
+    }
   }
 }
 </script>

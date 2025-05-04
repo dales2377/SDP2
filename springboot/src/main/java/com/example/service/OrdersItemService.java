@@ -1,11 +1,19 @@
 package com.example.service;
 
+import com.example.entity.CountVO;
+import com.example.entity.GoodsOrderVO;
 import com.example.entity.OrdersItem;
 import com.example.mapper.OrdersItemMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -13,6 +21,8 @@ import java.util.List;
  **/
 @Service
 public class OrdersItemService {
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Resource
     private OrdersItemMapper ordersItemMapper;
@@ -87,5 +97,31 @@ public class OrdersItemService {
         OrdersItem ordersItem = new OrdersItem();
         ordersItem.setGoodsId(goodsId);
         return ordersItemMapper.selectAll(ordersItem);
+    }
+
+    public List<GoodsOrderVO> hotGoods(CountVO req) {
+        if (req.getStartTime()==null||req.getEndTime()==null) {
+            req.setStartTime(getCurStartTime());
+            req.setEndTime(getCurEndTime());
+        }
+        List<GoodsOrderVO> result = ordersItemMapper.hotGoods(req);
+        result.sort(Comparator.comparing(GoodsOrderVO::getNums).reversed());
+        return result;
+    }
+    private String getCurEndTime() {
+
+        LocalDate today = LocalDate.now();
+
+        // 当天凌晨时间 (00:00:00)
+        String startOfDay = today.atStartOfDay().format(FORMATTER);
+        return startOfDay;
+    }
+
+    private String getCurStartTime() {
+        LocalDate today = LocalDate.now();
+        // 当天最后时间 (23:59:59)
+        String endOfDay = LocalDateTime.of(today, LocalTime.of(23, 59, 59))
+                .format(FORMATTER);
+        return endOfDay;
     }
 }

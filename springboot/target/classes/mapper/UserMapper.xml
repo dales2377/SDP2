@@ -5,7 +5,8 @@
 <mapper namespace="com.example.mapper.UserMapper">
 
     <sql id="Base_Column_List">
-        id,username,password,name,avatar,role,gender,phone
+        id,username,password,name,avatar,role,gender,phone,
+        email,address,business_name,company_name,first_name,last_name,registration_date,last_login,is_active,status
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.User">
@@ -16,6 +17,7 @@
             <if test="id != null"> and id= #{id}</if>
             <if test="username != null"> and username like concat('%', #{username}, '%')</if>
             <if test="name != null"> and name like concat('%', #{name}, '%')</if>
+            <if test="role != null"> and role = #{role}</if>
         </where>
         order by id desc
     </select>
@@ -43,6 +45,17 @@
             <if test="role != null">role,</if>
             <if test="gender != null">gender,</if>
             <if test="phone != null">phone,</if>
+
+            <if test="email != null">email,</if>
+            <if test="address != null">address,</if>
+            <if test="businessName != null">business_name,</if>
+            <if test="companyName != null">company_name,</if>
+            <if test="firstName != null">first_name,</if>
+            <if test="lastName != null">last_name,</if>
+            <if test="registrationDate != null">registration_date,</if>
+            <if test="lastLogin != null">last_login,</if>
+            <if test="isActive != null">is_active,</if>
+            <if test="status != null">status,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">#{id},</if>
@@ -53,6 +66,17 @@
             <if test="role != null">#{role},</if>
             <if test="gender != null">#{gender},</if>
             <if test="phone != null">#{phone},</if>
+
+            <if test="email != null">#{email},</if>
+            <if test="address != null">#{address},</if>
+            <if test="businessName != null">#{businessName},</if>
+            <if test="companyName != null">#{companyName},</if>
+            <if test="firstName != null">#{firstName},</if>
+            <if test="lastName != null">#{lastName},</if>
+            <if test="registrationDate != null">#{registrationDate},</if>
+            <if test="lastLogin != null">#{lastLogin},</if>
+            <if test="isActive != null">#{isActive},</if>
+            <if test="status != null">#{status},</if>
         </trim>
     </insert>
 
@@ -79,6 +103,36 @@
             </if>
             <if test="phone != null">
                 phone = #{phone},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="businessName != null">
+                business_name = #{businessName},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName},
+            </if>
+            <if test="firstName != null">
+                first_name = #{firstName},
+            </if>
+            <if test="lastName != null">
+                last_name = #{lastName},
+            </if>
+            <if test="registrationDate != null">
+                registration_date = #{registrationDate},
+            </if>
+            <if test="lastLogin != null">
+                last_login = #{lastLogin},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive},
+            </if>
+            <if test="status != null">
+                status = #{status},
             </if>
         </set>
         where id = #{id}

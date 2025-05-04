@@ -25,6 +25,8 @@ import java.util.List;
 @Service
 public class AdminService {
 
+    private static final String sign = "abcdefghijklmnapqrstuvwxyz";
+
     @Resource
     private AdminMapper adminMapper;
 
@@ -105,7 +107,7 @@ public class AdminService {
         }
         // 生成token
         String tokenData = dbAdmin.getId() + "-" + RoleEnum.ADMIN.name();
-        String token = TokenUtils.createToken(tokenData, dbAdmin.getPassword());
+        String token = TokenUtils.createToken(tokenData, sign);
         dbAdmin.setToken(token);
         return dbAdmin;
     }

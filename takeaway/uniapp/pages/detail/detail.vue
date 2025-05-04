@@ -281,8 +281,7 @@
 				this.$request.get('/goods/selectAll', {
 					categoryId: categoryId
 				}).then(res => {
-					const filteredData = res.data.filter(item => item.status === '上架')
-					this.goodsList = filteredData || []
+					this.goodsList = res.data || []
 				})
 			}
 		}

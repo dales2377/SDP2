@@ -48,6 +48,17 @@ public class Orders implements Serializable {
     /** 消费者名称 */
     private String userName;
 
+    public Integer getNoticeId() {
+        return noticeId;
+    }
+
+    public void setNoticeId(Integer noticeId) {
+        this.noticeId = noticeId;
+    }
+
+    private Integer noticeId;
+
+
     public Integer getId() {
         return id;
     }

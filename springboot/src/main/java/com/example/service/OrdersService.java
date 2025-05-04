@@ -7,6 +7,7 @@ import com.example.common.enums.OrderStatusEnum;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.*;
+import com.example.event.OrderChangeEvent;
 import com.example.exception.CustomException;
 import com.example.mapper.OrdersMapper;
 import com.example.utils.TokenUtils;
@@ -14,10 +15,16 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -27,6 +34,8 @@ import java.util.List;
 public class OrdersService {
 
     private static final Logger log = LoggerFactory.getLogger(OrdersService.class);
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Resource
     private OrdersMapper ordersMapper;
@@ -36,12 +45,17 @@ public class OrdersService {
 
     @Resource
     private OrdersItemService ordersItemService;
+    @Resource
+    private ApplicationContext applicationContext;
 
     /**
      * 新增
      */
     public void add(Orders orders) {
         ordersMapper.insert(orders);
+        //进行通知
+        OrderChangeEvent event = new OrderChangeEvent(orders);
+        applicationContext.publishEvent(event);
     }
 
     /**
@@ -73,6 +87,9 @@ public class OrdersService {
             orders.setPayTime(DateUtil.now());
         }
         ordersMapper.updateById(orders);
+        //进行通知
+        OrderChangeEvent event = new OrderChangeEvent(orders);
+        applicationContext.publishEvent(event);
     }
 
     /**
@@ -172,5 +189,45 @@ public class OrdersService {
 
     public List<Orders> selectUsageByBusinessId(Integer businessId) {
         return ordersMapper.selectUsageByBusinessId(businessId);
+    }
+
+    public Integer generateOrderNum(CountVO req) {
+        String role = TokenUtils.getCurrentUser().getRole();
+        if (req.getStartTime()==null||req.getEndTime()==null) {
+            req.setStartTime(getCurStartTime());
+            req.setEndTime(getCurEndTime());
+        }
+        if (role.equals("ADMIN")){
+            return ordersMapper.generateOrderNum(req,null);
+        }else {
+            return ordersMapper.generateOrderNum(req,TokenUtils.getCurrentUser().getId());
+        }
+
+    }
+
+    private String getCurEndTime() {
+
+        LocalDate today = LocalDate.now();
+
+        // 当天凌晨时间 (00:00:00)
+        String startOfDay = today.atStartOfDay().format(FORMATTER);
+        return startOfDay;
+    }
+
+    private String getCurStartTime() {
+        LocalDate today = LocalDate.now();
+        // 当天最后时间 (23:59:59)
+        String endOfDay = LocalDateTime.of(today, LocalTime.of(23, 59, 59))
+                .format(FORMATTER);
+        return endOfDay;
+    }
+
+    public Double income(CountVO req) {
+        if (req.getStartTime()==null||req.getEndTime()==null) {
+            req.setStartTime(getCurStartTime());
+            req.setEndTime(getCurEndTime());
+        }
+        Double shouru = ordersMapper.income(req);
+        return shouru;
     }
 }

@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.entity.User;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -37,5 +38,6 @@ public interface UserMapper {
 
     @Select("select * from user where username = #{username}")
     User selectByUsername(String username);
-
+    @Update("update user set password = #{password} where id = #{id}")
+    void resetPassword(User user);
 }

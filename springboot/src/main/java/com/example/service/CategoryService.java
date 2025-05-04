@@ -31,7 +31,7 @@ public class CategoryService {
         businessService.checkBusinessAuth();
 
         Account currentUser = TokenUtils.getCurrentUser();
-        if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())) {
+        if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())){ // add default value with current user id
             category.setBusinessId(currentUser.getId());
         }
         categoryMapper.insert(category);

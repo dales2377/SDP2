@@ -40,9 +40,24 @@
 				uni.navigateBack()
 			},
 			handleEdit(addressId) {
+				console.log(addressId);
+				uni.showLoading({
+					title: '加载中...'
+				});
 				uni.navigateTo({
-					url: '/pages/addAddress/addAddress?addressId=' + addressId
-				})
+					url: '/pages/addAddress/addAddress?addressId=' + addressId,
+					success: () => {
+						uni.hideLoading();
+					},
+					fail: (err) => {
+						console.error('导航失败:', err);
+						uni.hideLoading();
+						uni.showToast({
+							icon: 'error',
+							title: '页面跳转失败'
+						});
+					}
+				});
 			},
 			del(addressId) {
 				this.$request.del('/address/delete/' + addressId).then(res => {

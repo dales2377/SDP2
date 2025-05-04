@@ -42,13 +42,14 @@ public class WebController {
                 || ObjectUtil.isEmpty(account.getRole())) {
             return Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
-        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
-            account = adminService.login(account);
-        } else if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
-            account = businessService.login(account);
-        } else if (RoleEnum.USER.name().equals(account.getRole())) {
-            account = userService.login(account);
-        }
+//        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
+//            account = adminService.login(account);
+//        } else if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
+//            account = businessService.login(account);
+//        } else if (RoleEnum.USER.name().equals(account.getRole())) {
+//            account = userService.login(account);
+//        }
+        account = userService.login(account);
         return Result.success(account);
     }
 
@@ -61,11 +62,15 @@ public class WebController {
                 || ObjectUtil.isEmpty(account.getRole())) {
             return Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
-        if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
-            businessService.register(account);
-        } else  if (RoleEnum.USER.name().equals(account.getRole())) {
-            userService.register(account);
-        }
+//        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
+//            adminService.register(account);
+//        }
+//        if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
+//            businessService.register(account);
+//        } else  if (RoleEnum.USER.name().equals(account.getRole())) {
+//            userService.register(account);
+//        }
+        userService.register(account);
         return Result.success();
     }
 
@@ -78,11 +83,12 @@ public class WebController {
                 || ObjectUtil.isEmpty(account.getNewPassword())) {
             return Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
-        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
-            adminService.updatePassword(account);
-        } else if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
-            businessService.updatePassword(account);
-        }
+//        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
+//            adminService.updatePassword(account);
+//        } else if (RoleEnum.BUSINESS.name().equals(account.getRole())) {
+//            businessService.updatePassword(account);
+//        }
+        userService.updatePassword(account);
         return Result.success();
     }
 

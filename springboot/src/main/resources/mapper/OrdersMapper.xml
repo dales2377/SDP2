@@ -12,7 +12,7 @@
         select
         orders.*, business.name as businessName, user.name as userName
         from orders
-        left join business
+        left join user as business
         on orders.business_id = business.id
         left join user
         on orders.user_id = user.id
@@ -44,11 +44,24 @@
                business.name as businessName,
                user.name     as userName
         from orders
-                 left join business
+                 left join user as business
                            on orders.business_id = business.id
                  left join user
                            on orders.user_id = user.id
         where orders.id = #{id}
+    </select>
+    <select id="generateOrderNum" resultType="java.lang.Integer">
+        select count(*) from orders
+        where  time between #{param.startTime} and #{param.endTime}
+        <if test="id !=null">
+            and businessId = #{id}
+        </if>
+
+    </select>
+    <select id="income" resultType="java.lang.Double">
+        select IFNULL(sum(actual), 0.0) from orders
+        where time between #{startTime} and #{endTime}
+            and business_id = #{bussinessId} group by business_id ;
     </select>
 
     <delete id="deleteById">

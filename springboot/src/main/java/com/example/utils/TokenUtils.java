@@ -69,13 +69,14 @@ public class TokenUtils {
                 String userRole = JWT.decode(token).getAudience().get(0);
                 String userId = userRole.split("-")[0];  // 获取用户id
                 String role = userRole.split("-")[1];    // 获取角色
-                if (RoleEnum.ADMIN.name().equals(role)) {
-                    return staticAdminService.selectById(Integer.valueOf(userId));
-                } else if (RoleEnum.BUSINESS.name().equals(role)) {
-                    return staticBusinessService.selectBasicBusinessById(Integer.valueOf(userId));
-                } else if (RoleEnum.USER.name().equals(role)) {
-                    return staticUserService.selectById(Integer.valueOf(userId));
-                }
+//                if (RoleEnum.ADMIN.name().equals(role)) {
+//                    return staticAdminService.selectById(Integer.valueOf(userId));
+//                } else if (RoleEnum.BUSINESS.name().equals(role)) {
+//                    return staticBusinessService.selectBasicBusinessById(Integer.valueOf(userId));
+//                } else if (RoleEnum.USER.name().equals(role)) {
+//                    return staticUserService.selectById(Integer.valueOf(userId));
+//                }
+                return staticUserService.selectById(Integer.valueOf(userId));
             }
         } catch (Exception e) {
             log.error("获取当前用户信息出错", e);

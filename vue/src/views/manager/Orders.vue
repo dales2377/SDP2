@@ -177,15 +177,11 @@ export default {
   created() {
     this.load(1)
 
-    this.$request.get('/user/selectAll').then(res => {
+    this.$request.get('/user/selectAll?role=USER').then(res => {
       this.userList = res.data
     })
 
-    this.$request.get('/business/selectAll', {
-      params: {
-        status: '通过'
-      }
-    }).then(res => {
+    this.$request.get('/user/selectAll?role=BUSINESS').then(res => {
       this.businessList = res.data
     })
   },

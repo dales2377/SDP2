@@ -10,10 +10,10 @@
 
     <select id="selectAll" resultType="com.example.entity.Banner">
         select
-        banner.*, business.name as businessName
+        banner.*, user.name as businessName
         from banner
-        left join business
-        on banner.business_id = business.id
+        left join user
+        on banner.business_id = user.id
         <where>
             <if test="id != null"> and banner.id = #{id}</if>
             <if test="img != null"> and banner.img like concat('%', #{img}, '%')</if>

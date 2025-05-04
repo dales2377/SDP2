@@ -5,6 +5,7 @@ import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.entity.Business;
 import com.example.entity.Collect;
+import com.example.entity.User;
 import com.example.mapper.CollectMapper;
 import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
@@ -25,6 +26,8 @@ public class CollectService {
 
     @Resource
     private BusinessService businessService;
+    @Resource
+    private UserService userService;
 
     /**
      * 新增
@@ -69,8 +72,10 @@ public class CollectService {
     public List<Collect> selectAll(Collect collect) {
         List<Collect> collects = collectMapper.selectAll(collect);
         for (Collect c : collects) {
-            Business business = businessService.selectById(c.getBusinessId());
-            c.setBusiness(business);
+//            Business business = businessService.selectById(c.getBusinessId());
+            User user = userService.selectById(c.getBusinessId());
+//            c.setBusiness(business);
+            c.setUser(user);
         }
         return collects;
     }

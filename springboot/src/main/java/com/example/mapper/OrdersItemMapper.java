@@ -1,5 +1,7 @@
 package com.example.mapper;
 
+import com.example.entity.CountVO;
+import com.example.entity.GoodsOrderVO;
 import com.example.entity.OrdersItem;
 import org.apache.ibatis.annotations.Delete;
 
@@ -38,4 +40,5 @@ public interface OrdersItemMapper {
     @Delete("delete from orders_item where order_id = #{orderId}")
     void deleteByOrderId(Integer orderId);
 
+    List<GoodsOrderVO> hotGoods(CountVO req);
 }

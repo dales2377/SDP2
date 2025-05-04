@@ -4,7 +4,7 @@
 			<uni-forms :modelValue="form" :rules="rules" ref="formRef" label-width="140rpx" label-align="right">
 				<uni-forms-item label="头像" name="avatar">
 					<uni-file-picker limit="1" :image-styles="imageStyles" :del-icon="false" :disable-preview="true"
-						fileMediatype="image" v-model="avatar" @select="handleAvatarUploadSuccess"></uni-file-picker>
+						fileMediatype="image" v-model="avatar" :auto-upload="false" @select="handleAvatarUploadSuccess"></uni-file-picker>
 
 				</uni-forms-item>
 				<uni-forms-item label="账号" name="username">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import apiConfig from '@/config.js'
+const baseUrl = process.env.NODE_ENV === "development" ? apiConfig.dev.baseUrl : apiConfig.prod.baseUrl
 	export default {
 		data() {
 			return {
@@ -75,14 +77,15 @@
 				})
 			},
 			handleAvatarUploadSuccess(e) {
+				console.log(e);
 				let _this = this
 				const filePath = e.tempFilePaths[0]
 				uni.uploadFile({
-					url: _this.$baseUrl + '/files/upload', //自己的后端接口（默认发送post请求）
+					url: baseUrl + '/files/upload', //自己的后端接口（默认发送post请求）
 					filePath: filePath,
 					name: "file", //这里应为自己后端文件形参的名字
 					success(res) {
-						console.log(res)
+						console.log('1111111111'+res)
 						let url = JSON.parse(res.data || '{}').data
 						_this.form.avatar = url
 					}
