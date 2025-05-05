@@ -1,9 +1,11 @@
 package com.example.service;
 
+import com.example.entity.Account;
 import com.example.entity.CountVO;
 import com.example.entity.GoodsOrderVO;
 import com.example.entity.OrdersItem;
 import com.example.mapper.OrdersItemMapper;
+import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
@@ -100,9 +102,16 @@ public class OrdersItemService {
     }
 
     public List<GoodsOrderVO> hotGoods(CountVO req) {
+        Account currentUser = TokenUtils.getCurrentUser();
+
         if (req.getStartTime()==null||req.getEndTime()==null) {
             req.setStartTime(getCurStartTime());
             req.setEndTime(getCurEndTime());
+        }
+        if (currentUser.getRole().equals("ADMIN")) {
+            req.setBussinessId(null);
+        }else {
+            req.setBussinessId(currentUser.getId());
         }
         List<GoodsOrderVO> result = ordersItemMapper.hotGoods(req);
         result.sort(Comparator.comparing(GoodsOrderVO::getNums).reversed());

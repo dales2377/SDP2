@@ -48,6 +48,49 @@ public class User extends Account implements Serializable {
 
     /** 审核状态 */
     private String status;
+    /**
+     * 是否禁用
+     */
+    private Integer jy;
+    /**
+     * 问题
+     */
+    private String question;
+    private Double score;
+
+    private Integer nums;
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
+    public Integer getNums() {
+        return nums;
+    }
+
+    public void setNums(Integer nums) {
+        this.nums = nums;
+    }
+
+    public Integer getJy() {
+        return jy;
+    }
+
+    public void setJy(Integer jy) {
+        this.jy = jy;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 
     public String getStatus() {
         return status;

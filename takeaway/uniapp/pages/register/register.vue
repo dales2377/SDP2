@@ -9,6 +9,25 @@
 				<uni-forms-item name="password" required>
 					<uni-easyinput prefixIcon="locked" v-model="form.password" placeholder="请输入密码" />
 				</uni-forms-item>
+				
+				<!-- 凭证问题1 -->
+				<view style="margin: 20rpx 0; font-size: 28rpx; color: #666;">凭证问题1</view>
+				<uni-forms-item name="question1" required>
+					<uni-easyinput v-model="form.question1" placeholder="请输入问题1" />
+				</uni-forms-item>
+				<uni-forms-item name="answer1" required>
+					<uni-easyinput v-model="form.answer1" placeholder="请输入答案1" />
+				</uni-forms-item>
+
+				<!-- 凭证问题2 -->
+				<view style="margin: 20rpx 0; font-size: 28rpx; color: #666;">凭证问题2</view>
+				<uni-forms-item name="question2" required>
+					<uni-easyinput v-model="form.question2" placeholder="请输入问题2" />
+				</uni-forms-item>
+				<uni-forms-item name="answer2" required>
+					<uni-easyinput v-model="form.answer2" placeholder="请输入答案2" />
+				</uni-forms-item>
+				
 				<uni-forms-item>
 					<button @click="register()" style="background-color: #ffd100; border-color: #ffd100; 
 						height: 70rpx; line-height: 70rpx;">注 册</button>
@@ -27,19 +46,21 @@
 		data() {
 			return {
 				form: {
-					role: 'USER'
+					role: 'USER',
+					username: '',
+					password: '',
+					question1: '',
+					answer1: '',
+					question2: '',
+					answer2: ''
 				},
 				rules: {
-					// 对username字段进行必填验证
 					username: {
-						// username 字段的校验规则
 						rules:[
-							// 校验 username 不能为空
 							{
 								required: true,
 								errorMessage: '请输入账号',
 							},
-							// 对username字段进行长度验证
 							{
 								minLength: 3,
 								maxLength: 10,
@@ -59,6 +80,38 @@
 								errorMessage: '密码长度在 {minLength} 到 {maxLength} 个字符',
 							}
 						],
+					},
+					question1: {
+						rules:[
+							{
+								required: true,
+								errorMessage: '请输入问题1',
+							}
+						],
+					},
+					answer1: {
+						rules:[
+							{
+								required: true,
+								errorMessage: '请输入答案1',
+							}
+						],
+					},
+					question2: {
+						rules:[
+							{
+								required: true,
+								errorMessage: '请输入问题2',
+							}
+						],
+					},
+					answer2: {
+						rules:[
+							{
+								required: true,
+								errorMessage: '请输入答案2',
+							}
+						],
 					}
 				}
 			}
@@ -66,7 +119,39 @@
 		methods: {
 			register() {
 				this.$refs.form.validate().then(res=>{
-					this.$request.post('/register', this.form).then(res => {
+					// 验证问题不能重复
+					if (this.form.question1 === this.form.question2) {
+						uni.showToast({
+							icon: 'error',
+							title: '两个问题不能相同'
+						})
+						return
+					}
+					
+					// 构造提交的数据
+					const submitData = {
+						...this.form,
+						question: JSON.stringify(
+							[
+							{
+								question: this.form.question1,
+								answer: this.form.answer1
+							},
+							{
+								question: this.form.question2,
+								answer: this.form.answer2
+							}
+						]
+						)
+					}
+					
+					// 删除临时字段
+					delete submitData.question1
+					delete submitData.question2
+					delete submitData.answer1
+					delete submitData.answer2
+					
+					this.$request.post('/register', submitData).then(res => {
 						if (res.code === '200') {
 							uni.showToast({
 								icon: 'success',

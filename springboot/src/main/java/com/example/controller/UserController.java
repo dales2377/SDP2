@@ -3,6 +3,7 @@ package com.example.controller;
 import cn.hutool.core.util.ObjectUtil;
 import com.example.common.Result;
 import com.example.common.enums.ResultCodeEnum;
+import com.example.entity.Account;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.service.UserService;
@@ -104,6 +105,19 @@ public class UserController {
         user.setPassword(BCryptUtils.hashPassword("123456789"));
         userService.resetPassword(user);
         return Result.success();
+    }
+    /**
+     * 获取当前用户信息
+     */
+    @GetMapping("/getCurUserInfo")
+    public Result getCurUserInfo() {
+        if (ObjectUtil.isEmpty(TokenUtils.getCurrentUser())) {
+            return Result.error(ResultCodeEnum.USER_NOT_LOGIN);
+        }
+        Account account = TokenUtils.getCurrentUser();
+        Integer id = account.getId();
+        User user = userService.selectById(id);
+        return Result.success(user);
     }
 
 }

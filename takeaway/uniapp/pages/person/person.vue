@@ -13,8 +13,8 @@
 				<uni-forms-item label="姓名" name="name">
 					<uni-easyinput type="text" v-model="form.name" placeholder="请输入姓名" />
 				</uni-forms-item>
-				<uni-forms-item label="性别" name="sex">
-					<uni-data-checkbox style="position: relative; top: 10rpx;" v-model="form.sex" :localdata="range"></uni-data-checkbox>
+				<uni-forms-item label="性别" name="gender">
+					<uni-data-checkbox style="position: relative; top: 10rpx;" v-model="form.gender" :localdata="range"></uni-data-checkbox>
 				</uni-forms-item>
 				<uni-forms-item label="电话" name="phone">
 					<uni-easyinput type="text" v-model="form.phone" placeholder="请输入电话" />

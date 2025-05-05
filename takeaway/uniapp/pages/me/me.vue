@@ -70,6 +70,14 @@
 		},
 		onShow() {
 			this.user = uni.getStorageSync('xm-user')
+			this.$request.get('/user/getCurUserInfo').then(res => {
+				let data = {
+					...res.data,
+					token: this.user.token
+				}
+				this.user = data
+				uni.setStorageSync('xm-user', data)  // 更新浏览器缓存的用户信息
+			})
 		},
 		methods: {
 			logout() {

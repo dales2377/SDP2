@@ -128,7 +128,7 @@
 				})
 
 				// 获取商家的列表
-				this.$request.get('/user/selectAll', { role: 'BUSINESS' }).then(res => {
+				this.$request.get('/user/selectAll', { role: 'BUSINESS', status: '通过' }).then(res => {
 					this.businessList = res.data || []
 				})
 			}

@@ -29,11 +29,22 @@
           </template>
         </el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
-        <el-table-column label="操作" align="center" width="280">
+        <el-table-column prop="jy" label="状态">
+          <template v-slot="scope">
+            <el-tag type="success" v-if="scope.row.jy === 1">启用</el-tag>
+            <el-tag type="danger" v-if="scope.row.jy === 0">禁用</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center" width="300">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
             <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
+            <el-button size="mini" :type="scope.row.jy === 1 ? 'danger' : 'success'" plain 
+                       @click="handleToggleStatus(scope.row)"
+                       :disabled="scope.row.username === 'admin'">
+              {{ scope.row.jy === 1 ? '禁用' : '启用' }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -231,6 +242,39 @@ export default {
         })
       }).catch(() => {
         this.$message.info('已取消重置')
+      })
+    },
+    // 处理禁用/启用状态切换
+    handleToggleStatus(row) {
+      // 如果是admin账号，不允许操作
+      if (row.username === 'admin') {
+        this.$message.warning('admin账号不允许禁用/启用')
+        return
+      }
+      
+      const action = row.jy === 1 ? '禁用' : '启用'
+      this.$confirm(`确定要${action}该管理员吗？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request({
+          url: '/user/update',
+          method: 'PUT',
+          data: {
+            ...row,
+            jy: row.jy === 1 ? 0 : 1
+          }
+        }).then(res => {
+          if (res.code === '200') {
+            this.$message.success(`${action}成功`)
+            this.load(1)  // 刷新列表
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消操作')
       })
     }
   }

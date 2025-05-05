@@ -223,9 +223,16 @@ public class OrdersService {
     }
 
     public Double income(CountVO req) {
+        Account currentUser = TokenUtils.getCurrentUser();
+
         if (req.getStartTime()==null||req.getEndTime()==null) {
             req.setStartTime(getCurStartTime());
             req.setEndTime(getCurEndTime());
+        }
+        if (currentUser.getRole().equals("ADMIN")) {
+            req.setBussinessId(null);
+        }else {
+            req.setBussinessId(currentUser.getId());
         }
         Double shouru = ordersMapper.income(req);
         return shouru;

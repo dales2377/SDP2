@@ -13,8 +13,11 @@
 					<button @click="login()" style="background-color: #ffd100; border-color: #ffd100; height: 70rpx; line-height: 70rpx;">登 录</button>
 				</uni-forms-item>
 				<uni-forms-item>
-					<view style="text-align: right;">还没有账号？去 <navigator style="display: inline-block; color: dodgerblue; 
-						margin-left: 4rpx;" url="/pages/register/register">注册</navigator></view>
+					<view style="text-align: right;">
+						<navigator style="display: inline-block; color: dodgerblue; margin-right: 20rpx;" url="/pages/forgot-password/forgot-password">找回密码</navigator>
+						还没有账号？去 <navigator style="display: inline-block; color: dodgerblue; 
+						margin-left: 4rpx;" url="/pages/register/register">注册</navigator>
+					</view>
 				</uni-forms-item>
 			</uni-forms>
 		</view>

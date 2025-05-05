@@ -260,7 +260,7 @@
 				})
 			},
 			load() {
-				this.$request.get('/business/selectById/' + this.businessId).then(res => {
+				this.$request.get('/user/selectById/' + this.businessId).then(res => {
 					this.business = res.data || {}
 				})
 

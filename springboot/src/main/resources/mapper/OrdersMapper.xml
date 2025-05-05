@@ -54,14 +54,17 @@
         select count(*) from orders
         where  time between #{param.startTime} and #{param.endTime}
         <if test="id !=null">
-            and businessId = #{id}
+            and business_id = #{id}
         </if>
 
     </select>
     <select id="income" resultType="java.lang.Double">
         select IFNULL(sum(actual), 0.0) from orders
         where time between #{startTime} and #{endTime}
-            and business_id = #{bussinessId} group by business_id ;
+            <if test="bussinessId!=null">
+                and business_id = #{bussinessId}
+            </if>
+        group by business_id ;
     </select>
 
     <delete id="deleteById">
