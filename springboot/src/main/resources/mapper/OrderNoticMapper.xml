@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrderNoticeMapper">
+
+    <sql id="base_column">
+        id,order_id,is_delete,create_time
+    </sql>
+    <insert id="insert">
+        insert into order_notice(order_id) values(#{orderId})
+    </insert>
+    <update id="logicDeleteById">
+        update order_notice set is_delete = 1 where id = #{id};
+    </update>
+    <select id="getAll" resultType="com.example.entity.Orders">
+        select
+            o.id,o.order_no,o.time,o.pay_time,o.status,o.business_id,o.address,o.phone,o.user_id,
+            o.amount,o.discount,o.actual,o.comment,o.cover,o.user,o.name,t.id as noticeId
+        from orders o
+                 inner join order_notice t on o.id = t.order_id
+        where t.is_delete=0 and o.business_id = #{id}
+        order by t.create_time desc;
+    </select>
+
+
+</mapper>

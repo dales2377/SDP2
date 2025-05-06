@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cce66963-b197-41cd-88f9-f8623738c788" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cn_hutool_hutool_all_5_8_18.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_auth0_java_jwt_4_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_12_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_autoconfigure_1_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_starter_1_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_17_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_56.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_56.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_56.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mindrot_jbcrypt_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/common/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/enums/OrderStatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/common/enums/OrderStatusEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/enums/ResultCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/common/enums/ResultCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/common/enums/RoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/common/enums/RoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/WebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/WebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Collect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Collect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mapper/OrdersItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mapper/OrdersItemMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mapper/OrdersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mapper/OrdersMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/CollectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/CollectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OrdersItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OrdersItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/BannerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/BannerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CollectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CollectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrdersItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrdersItemMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrdersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrdersMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/common/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/common/config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/common/enums/OrderStatusEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/common/enums/OrderStatusEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/common/enums/ResultCodeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/common/enums/ResultCodeEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/common/enums/RoleEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/common/enums/RoleEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/entity/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/entity/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/entity/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/entity/Collect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/entity/Collect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/entity/Orders.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/entity/Orders.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mapper/OrdersItemMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/mapper/OrdersItemMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mapper/OrdersMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/mapper/OrdersMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/CartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/CartService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/CollectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/CollectService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/OrdersItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/OrdersItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/OrdersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/OrdersService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/BannerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/BannerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/CategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/CategoryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/CollectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/CollectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/CommentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/OrdersItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/OrdersItemMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/OrdersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/OrdersMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/address/address.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/address/address.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/confirm/confirm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/confirm/confirm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/detail/detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/detail/detail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/index/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/login/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/login/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/me/me.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/me/me.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/orders/orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/orders/orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/ordersItem/ordersItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/ordersItem/ordersItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/person/person.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/person/person.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/pages/register/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/pages/register/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/common/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/common/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/common/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/common/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/Detail/Detail.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/Detail/Detail.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/address/address.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/address/address.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/collect/collect.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/collect/collect.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/confirm/confirm.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/confirm/confirm.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/index/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/index/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/login/login.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/login/login.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/me/me.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/me/me.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/orders/orders.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/orders/orders.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/ordersItem/ordersItem.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/ordersItem/ordersItem.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/person/password.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/person/password.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/person/person.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/person/person.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/register/register.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/pages/register/register.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms/uni-forms.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms/uni-forms.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-icons/components/uni-icons/uni-icons.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-icons/components/uni-icons/uni-icons.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-popup/components/uni-popup/uni-popup.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-popup/components/uni-popup/uni-popup.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-rate/components/uni-rate/uni-rate.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-rate/components/uni-rate/uni-rate.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-tag/components/uni-tag/uni-tag.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/.sourcemap/mp-weixin/uni_modules/uni-tag/components/uni-tag/uni-tag.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/common/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/common/vendor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/addAddress/addAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/addAddress/addAddress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/address/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/address/address.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/collect/collect.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/collect/collect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/comment/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/comment/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/commentCenter/commentCenter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/commentCenter/commentCenter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/confirm/confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/confirm/confirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/confirm/confirm.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/confirm/confirm.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/detail/detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/detail/detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/index/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/login/login.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/login/login.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/me/me.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/me/me.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orderComment/orderComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orderComment/orderComment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orders/orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orders/orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orders/orders.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/orders/orders.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/ordersItem/ordersItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/ordersItem/ordersItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/ordersItem/ordersItem.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/ordersItem/ordersItem.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/password.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/password.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/person.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/person/person.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/register/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/register/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/register/register.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/pages/register/register.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-forms/components/uni-forms/uni-forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-forms/components/uni-forms/uni-forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-icons/components/uni-icons/uni-icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-icons/components/uni-icons/uni-icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-popup/components/uni-popup/uni-popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-popup/components/uni-popup/uni-popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-rate/components/uni-rate/uni-rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-rate/components/uni-rate/uni-rate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-tag/components/uni-tag/uni-tag.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-tag/components/uni-tag/uni-tag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-transition/components/uni-transition/uni-transition.js" beforeDir="false" afterPath="$PROJECT_DIR$/../takeaway/uniapp/unpackage/dist/dev/mp-weixin/uni_modules/uni-transition/components/uni-transition/uni-transition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/Manager.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/Manager.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Admin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/AdminPerson.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/AdminPerson.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Business.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Business.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/BusinessPerson.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/BusinessPerson.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Category.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/Orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/Orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue/src/views/manager/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue/src/views/manager/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../~$具体目标.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../具体目标.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../具体目标.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../接口问题.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\ide\maven3.8" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\ide\maven3.8\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2wFthB0jQRHB4aYdpg4Rb0BPlJ8" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "Spring Boot.SpringbootApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.SpringbootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cce66963-b197-41cd-88f9-f8623738c788" name="Default Changelist" comment="" />
+      <created>1745649270027</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745649270027</updated>
+      <workItem from="1745649271357" duration="276000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
