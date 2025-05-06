@@ -19,6 +19,15 @@ public class Account {
     private String avatar;
 
     private String token;
+    private String question;
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 
     public Integer getId() {
         return id;

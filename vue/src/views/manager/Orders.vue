@@ -18,13 +18,13 @@
         <el-table-column prop="name" label="订单名称"></el-table-column>
         <el-table-column prop="status" label="订单状态">
           <template v-slot="scope">
-            <el-tag type="danger" v-if="scope.row.status === '已取消'">已取消</el-tag>//
-            <el-tag type="warning" v-if="scope.row.status === '待支付'">待支付</el-tag>
-            <el-tag type="primary" v-if="scope.row.status === '待发货'">待发货</el-tag>
-            <el-tag type="primary" v-if="scope.row.status === '待收货'">待收货</el-tag>
-            <el-tag type="info" v-if="scope.row.status === '待评价'">待评价</el-tag>
-            <el-tag type="success" v-if="scope.row.status === '已完成'">已完成</el-tag>
-            <el-tag type="red" v-if="scope.row.status === '已退款'">已退款</el-tag>
+            <el-tag type="danger" v-if="scope.row.status === 'canceled'">已取消</el-tag>
+            <el-tag type="warning" v-if="scope.row.status === 'awaitpayment'">待支付</el-tag>
+            <el-tag type="primary" v-if="scope.row.status === 'awaitshipping'">待发货</el-tag>
+            <el-tag type="primary" v-if="scope.row.status === 'awaitreceiption'">待收货</el-tag>
+            <el-tag type="info" v-if="scope.row.status === 'awaitcomments'">待评价</el-tag>
+            <el-tag type="success" v-if="scope.row.status === 'complete'">已完成</el-tag>
+            <el-tag type="red" v-if="scope.row.status === 'refunded'">已退款</el-tag>
           </template>
         </el-table-column>
         <el-table-column prop="businessName" label="接单商家"></el-table-column>
@@ -45,7 +45,7 @@
               </el-table-column>
         <el-table-column label="操作" align="center" width="240" fixed="right">
           <template v-slot="scope">
-            <el-button size="mini" type="info" @click="sendGoods(scope.row)" v-if="scope.row.status === '待发货'">发货</el-button>
+            <el-button size="mini" type="info" @click="sendGoods(scope.row)" v-if="scope.row.status === 'awaitshipping'">发货</el-button>
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)"  v-if="user.role === 'ADMIN'">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)" v-if="user.role === 'ADMIN'">删除</el-button>
           </template>
@@ -76,7 +76,7 @@
         </el-form-item>
         <el-form-item label="订单状态" prop="status">
           <el-select style="width: 100%" v-model="form.status">
-            <el-option v-for="item in ['已取消', '待支付', '待发货', '待收货', '待评价', '已完成', '已退款']" :key="item" :value="item"></el-option>
+            <el-option v-for="(label, value) in orderStatusMap" :key="value" :value="value" :label="label"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="下单时间" prop="time">
@@ -166,6 +166,15 @@ export default {
       fromVisible1: false,
       form: {},
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
+      orderStatusMap: {
+        'awaitpayment': '待支付',
+        'awaitshipping': '待发货',
+        'awaitreceiption': '待收货',
+        'awaitcomments': '待评价',
+        'refunded': '已退款',
+        'complete': '已完成',
+        'canceled': '已取消'
+      },
       rules: {
         name: [
           {required: true, message: '请输入名称', trigger: 'blur'},
@@ -177,22 +186,18 @@ export default {
   created() {
     this.load(1)
 
-    this.$request.get('/user/selectAll').then(res => {
+    this.$request.get('/user/selectAll?role=CUSTOMER').then(res => {
       this.userList = res.data
     })
 
-    this.$request.get('/business/selectAll', {
-      params: {
-        status: '通过'
-      }
-    }).then(res => {
+    this.$request.get('/user/selectAll?role=BUSINESS').then(res => {
       this.businessList = res.data
     })
   },
   methods: {
     sendGoods(row) {
       let form = JSON.parse(JSON.stringify(row)) // deep copy not change data in the website in time
-      form.status = '待收货'
+      form.status = 'awaitreceiption'
       this.$request.put('/orders/update' , form).then(res => {
         if (res.code === '200') {
           this.$message.success('保存成功')

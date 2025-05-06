@@ -36,6 +36,11 @@
 				<text style="margin-left: 10rpx;">个人信息</text>
 				<uni-icons type="right" color="#999" style="float: right;"></uni-icons>
 			</navigator>
+			<navigator url="/pages/person/password" style="padding: 15rpx; border-bottom: 2rpx solid #eee;">
+				<uni-icons type="person" size="18"></uni-icons>
+				<text style="margin-left: 10rpx;">修改密码</text>
+				<uni-icons type="right" color="#999" style="float: right;"></uni-icons>
+			</navigator>
 			<navigator url="/pages/aboutUs/aboutUs" style="padding: 15rpx; border-bottom: 2rpx solid #eee;">
 				<uni-icons type="help" size="18"></uni-icons>
 				<text style="margin-left: 10rpx;">关于我们</text>
@@ -65,6 +70,14 @@
 		},
 		onShow() {
 			this.user = uni.getStorageSync('xm-user')
+			this.$request.get('/user/getCurUserInfo').then(res => {
+				let data = {
+					...res.data,
+					token: this.user.token
+				}
+				this.user = data
+				uni.setStorageSync('xm-user', data)  // 更新浏览器缓存的用户信息
+			})
 		},
 		methods: {
 			logout() {

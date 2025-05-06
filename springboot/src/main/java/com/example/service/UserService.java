@@ -4,11 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
-import com.example.entity.Account;
-import com.example.entity.Business;
-import com.example.entity.User;
+import com.example.entity.*;
 import com.example.exception.CustomException;
 import com.example.mapper.UserMapper;
+import com.example.utils.BCryptUtils;
 import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,14 +26,21 @@ import java.util.Objects;
 @Service
 public class UserService {
 
-    @Value("${server.port:9090}")
-    private String port;
-
-    @Value("${ip:localhost}")
-    private String ip;
+    private static final String sign = "abcdefghijklmnapqrstuvwxyz";
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private CollectService collectService;
+
+    @Resource
+    private CommentService commentService;
+
+    @Resource
+    private OrdersService ordersService;
+
+    @Resource
+    private OrdersItemService ordersItemService;
 
     /**
      * 新增
@@ -46,7 +53,10 @@ public class UserService {
         if (ObjectUtil.isEmpty(user.getName())) {
             user.setName(user.getUsername());
         }
-        user.setRole(RoleEnum.USER.name());
+        //密码加密
+        String newPwd = BCryptUtils.hashPassword(user.getPassword());
+        user.setPassword(newPwd);
+//        user.setRole(RoleEnum.USER.name());
         userMapper.insert(user);
     }
 
@@ -89,7 +99,34 @@ public class UserService {
      * 查询所有
      */
     public List<User> selectAll(User user) {
-        return userMapper.selectAll(user);
+//        if (user.getRole().equals("BUSINESS")) {
+//            user.setStatus("通过");
+//        }
+        List<User> users = userMapper.selectAll(user);
+        for (User b : users) {
+            if (b.getRole().equals(RoleEnum.BUSINESS.name())){
+                wrapBusiness(b);
+            }
+
+        }
+        return users;
+    }
+    private void wrapBusiness(User b) {
+        List<Comment> commentList = commentService.selectByBusinessId(b.getId());
+        double sum = commentList.stream().map(Comment::getStar).reduce(Double::sum).orElse(0D) + 5D;
+        // 5 + 4.5 / 1 + 1
+        double score = BigDecimal.valueOf(sum).divide(BigDecimal.valueOf(commentList.size() + 1), 1, BigDecimal.ROUND_UP).doubleValue();
+        b.setScore(score);
+
+        // 查出所有有效的订单
+        List<Orders> ordersList = ordersService.selectUsageByBusinessId(b.getId());
+        int nums = 0;
+        for (Orders orders : ordersList) {
+            List<OrdersItem> ordersItemList = ordersItemService.selectByOrderId(orders.getId());
+            // 聚合函数查出订单的商品数量
+            nums += ordersItemList.stream().map(OrdersItem::getNum).reduce(Integer::sum).orElse(0);
+        }
+        b.setNums(nums);
     }
 
     /**
@@ -105,16 +142,20 @@ public class UserService {
      * login
      */
     public Account login(Account account) {
-        Account dbUser = this.selectByUsername(account.getUsername());
+        User dbUser = this.selectByUsername(account.getUsername());
+        if (dbUser.getIsActive()==0) {
+            throw new CustomException(ResultCodeEnum.forbidden);
+        }
         if (ObjectUtil.isNull(dbUser)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!account.getPassword().equals(dbUser.getPassword())) {   // 比较用户输入密码和数据库密码是否一致
+
+        if (!BCryptUtils.checkPassword(account.getPassword(), dbUser.getPassword())) {   // compare password is same or not
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
         // generate token
-        String tokenData = dbUser.getId() + "-" + RoleEnum.USER.name();
-        String token = TokenUtils.createToken(tokenData, dbUser.getPassword());
+        String tokenData = dbUser.getId() + "-" + dbUser.getRole();
+        String token = TokenUtils.createToken(tokenData, sign);
         dbUser.setToken(token);
         return dbUser;
     }
@@ -135,4 +176,27 @@ public class UserService {
         this.add(user);  // 添加账户信息
     }
 
+    /**
+     * 重置密码
+     * @param user
+     */
+    public void resetPassword(User user) {
+        userMapper.resetPassword(user);
+    }
+
+    /**
+     * 修改密码
+     * @param account
+     */
+    public void updatePassword(Account account) {
+        User user = this.selectByUsername(account.getUsername());
+        if (ObjectUtil.isNull(user)) {
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        if (!BCryptUtils.checkPassword(account.getPassword(), user.getPassword())) {
+            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
+        }
+        user.setPassword(BCryptUtils.hashPassword(account.getNewPassword()));
+        this.updateById(user);
+    }
 }

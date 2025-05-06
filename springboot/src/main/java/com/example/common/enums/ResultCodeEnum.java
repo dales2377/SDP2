@@ -16,6 +16,8 @@ public enum ResultCodeEnum {
     PARAM_PASSWORD_ERROR("5005", "原密码输入错误"),
     NO_AUTH("5006", "无权限"),
     NO_GOODS("5006", "您未选购商品"),
+    forbidden("5007","用户被禁用"),
+    question("5008", "您填写问题答案错误")
     ;
 
     public String code;

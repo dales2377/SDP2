@@ -12,8 +12,9 @@
         select
         collect.*, business.name as businessName, user.name as userName
         from collect
-        left join business
+        left join user as business
         on collect.business_id = business.id
+
         left join user
         on collect.user_id = user.id
         <where>

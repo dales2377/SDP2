@@ -288,4 +288,3 @@
 .uni-data-checklist .checklist-group .checklist-box.is--list.is-checked.is-disable .checklist-text {
   opacity: 0.4;
 }
-

@@ -3,8 +3,12 @@ package com.example.controller;
 import cn.hutool.core.util.ObjectUtil;
 import com.example.common.Result;
 import com.example.common.enums.ResultCodeEnum;
+import com.example.entity.Account;
 import com.example.entity.User;
+import com.example.exception.CustomException;
 import com.example.service.UserService;
+import com.example.utils.BCryptUtils;
+import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -73,7 +77,7 @@ public class UserController {
      * 查询所有
      */
     @GetMapping("/selectAll")
-    public Result selectAll(User user ) {
+    public Result selectAll(User user) {
         List<User> list = userService.selectAll(user);
         return Result.success(list);
     }
@@ -87,6 +91,33 @@ public class UserController {
                              @RequestParam(defaultValue = "10") Integer pageSize) {
         PageInfo<User> page = userService.selectPage(user, pageNum, pageSize);
         return Result.success(page);
+    }
+
+    /**
+     * 重置密码
+     */
+    @PostMapping("/resetPassword")
+    public Result resetPassword(@RequestBody User user) {
+        String role = TokenUtils.getCurrentUser().getRole();
+        if (!role.equals("ADMIN")){
+            throw new CustomException(ResultCodeEnum.NO_AUTH);
+        }
+        user.setPassword(BCryptUtils.hashPassword("123456789"));
+        userService.resetPassword(user);
+        return Result.success();
+    }
+    /**
+     * 获取当前用户信息
+     */
+    @GetMapping("/getCurUserInfo")
+    public Result getCurUserInfo() {
+        if (ObjectUtil.isEmpty(TokenUtils.getCurrentUser())) {
+            return Result.error(ResultCodeEnum.USER_NOT_LOGIN);
+        }
+        Account account = TokenUtils.getCurrentUser();
+        Integer id = account.getId();
+        User user = userService.selectById(id);
+        return Result.success(user);
     }
 
 }

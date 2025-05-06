@@ -39,6 +39,8 @@ public class BusinessService {
 
     @Resource
     private OrdersItemService ordersItemService;
+    @Resource
+    private UserService userService;
 
     /**
      * 新增商家
@@ -179,7 +181,7 @@ public class BusinessService {
      * 商家登录
      */
     public Account login(Account account) {
-        Account dbBusiness = this.selectByUsername(account.getUsername());
+        Business dbBusiness = this.selectByUsername(account.getUsername());
         if (ObjectUtil.isNull(dbBusiness)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
@@ -215,8 +217,9 @@ public class BusinessService {
     public void checkBusinessAuth() {
         Account currentUser = TokenUtils.getCurrentUser();  // 获取当前的用户信息
         if (RoleEnum.BUSINESS.name().equals(currentUser.getRole())) {   // 如果是商家 的话
-            Business business = selectById(currentUser.getId());
-            if (!"通过".equals(business.getStatus())) {   // 未审核通过的商家  不允许添加数据
+//            Business business = selectById(currentUser.getId());
+            User user = userService.selectById(currentUser.getId());
+            if (!"通过".equals(user.getStatus())) {   // 未审核通过的商家  不允许添加数据
                 throw new CustomException(ResultCodeEnum.NO_AUTH);
             }
         }

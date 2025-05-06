@@ -34,13 +34,13 @@
 			</view>
 		
 			<view style="flex: 1; text-align: right; margin-top: 20rpx;">
-				<uni-tag v-if="orders.status === '待支付'" text="支付" size="mini" type="primary"
-					@click="changeStatus(item, '待发货')"></uni-tag>
-				<uni-tag v-if="orders.status === '待发货'" text="申请退款" size="mini" type="error"
-					@click="changeStatus(item, '已退款')"></uni-tag>
-				<uni-tag v-if="orders.status === '待收货'" text="确认收货" size="mini" type="warning"
-					@click="changeStatus(item, '待评价')"></uni-tag>
-				<uni-tag v-if="orders.status === '待评价'" text="评价" size="mini" type="royal"></uni-tag>
+				<uni-tag v-if="orders.status === 'awaitpayment'" text="支付" size="mini" type="primary"
+					@click="changeStatus(orders, 'awaitshipping')"></uni-tag>
+				<uni-tag v-if="orders.status === 'awaitshipping'" text="申请退款" size="mini" type="error"
+					@click="changeStatus(orders, 'refunded')"></uni-tag>
+				<uni-tag v-if="orders.status === 'awaitreceiption'" text="确认收货" size="mini" type="warning"
+					@click="changeStatus(orders, 'awaitcomments')"></uni-tag>
+				<uni-tag v-if="orders.status === 'awaitcomments'" text="评价" size="mini" type="royal"></uni-tag>
 			</view>
 		</view>
 		<!-- 商品和金额信息 -->		
@@ -53,7 +53,16 @@
 			return {
 				orders: {},
 				ordersItemList: [],
-				orderId: 0
+				orderId: 0, // orderId 初始化
+				// 添加订单状态映射
+				orderStatusMap: {
+					'awaitpayment': '待支付',
+					'awaitshipping': '待发货',
+					'awaitreceiption': '待收货',
+					'awaitcomments': '待评价',
+					'refunded': '已退款',
+					'complete': '已完成'
+				}
 			}
 		},
 		onLoad(option) {

@@ -22,6 +22,15 @@ public class Cart {
     private Goods goods;
 
     private Business business;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Business getBusiness() {
         return business;

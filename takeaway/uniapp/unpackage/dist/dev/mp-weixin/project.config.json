@@ -18,7 +18,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.2.4",
+  "libVersion": "",
   "appid": "wx700b484f7017bf47",
   "projectname": "uniapp",
   "condition": {

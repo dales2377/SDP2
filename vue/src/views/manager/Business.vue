@@ -2,7 +2,7 @@
   <div>
     <div class="search">
       <el-input placeholder="请输入账号查询" style="width: 200px" v-model="username"></el-input>
-      <el-input placeholder="请输入商家名称" style="width: 200px; margin-left: 10px" v-model="name"></el-input>
+      <el-input placeholder="请输入名称" style="width: 200px; margin-left: 10px" v-model="name"></el-input>
       <el-button type="info" plain style="margin-left: 10px" @click="load(1)">查询</el-button>
       <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
@@ -40,18 +40,30 @@
         </el-table-column>
         <el-table-column prop="status" label="审核状态">
           <template v-slot="scope">
-            <el-tag type="info" v-if="scope.row.status === '待审核'">待审核</el-tag>
-            <el-tag type="success" v-if="scope.row.status ==='通过'">通过</el-tag>
-            <el-tag type="danger" v-if="scope.row.status === '拒绝!'">拒绝</el-tag>
+            <el-tag type="info" v-if="scope.row.status === 'Awaitingreview'">待审核</el-tag>
+            <el-tag type="success" v-if="scope.row.status === 'pass'">通过</el-tag>
+            <el-tag type="danger" v-if="scope.row.status === 'cancel'">拒绝</el-tag>
+          </template>
+        </el-table-column>
+
+        <el-table-column prop="jy" label="状态">
+          <template v-slot="scope">
+            <el-tag type="success" v-if="scope.row.isActive == 1">启用</el-tag>
+            <el-tag type="danger" v-if="scope.row.isActive == 0">禁用</el-tag>
           </template>
         </el-table-column>
 
         <el-table-column prop="timeRange" label="营业时间"></el-table-column>
         <el-table-column prop="type" label="分类"></el-table-column>
-        <el-table-column label="操作" align="center" width="180">
+        <el-table-column label="操作" align="center" width="300">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
+            <el-button size="mini" :type="scope.row.isActive == 1 ? 'danger' : 'success'" plain 
+                       @click="handleToggleStatus(scope.row)">
+              {{ scope.row.isActive == 1 ? '禁用' : '启用' }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -70,11 +82,11 @@
     </div>
 
 
-    <el-dialog title="商家" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
+    <el-dialog title="用户" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
         <el-form-item label="审核状态" prop="status">
           <el-select style="width: 100%" v-model="form.status">
-            <el-option v-for="item in ['待审核', '通过', '拒绝']" :key="item" :value="item" :label="item"></el-option>
+            <el-option v-for="(label, value) in statusMap" :key="value" :value="value" :label="label"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="账号" prop="username">
@@ -83,8 +95,8 @@
         <el-form-item label="密码" prop="password">
           <el-input v-model="form.password" placeholder="密码" show-password></el-input>
         </el-form-item>
-        <el-form-item label="名称" prop="name">
-          <el-input v-model="form.name" placeholder="名称"></el-input>
+        <el-form-item label="名称" prop="businessName">
+          <el-input v-model="form.businessName" placeholder="名称"></el-input>
         </el-form-item>
         <el-form-item label="电话" prop="phone">
           <el-input v-model="form.phone" placeholder="电话"></el-input>
@@ -141,9 +153,10 @@
 
 <script>
 export default {
-  name: "Business",
+  name: "BUSINESS",
   data() {
     return {
+      role: 'BUSINESS',
       tableData: [],  // data in table
       pageNum: 1,   // default page
       pageSize: 10,  // data number n each page
@@ -153,6 +166,11 @@ export default {
       fromVisible: false,
       form: {},
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
+      statusMap: {
+        'Awaitingreview': '待审核',
+        'pass': '通过',
+        'cancel': '拒绝'
+      },
       rules: {
         username: [
           {required: true, message: '请输入账号', trigger: 'blur'},
@@ -162,9 +180,6 @@ export default {
         ],
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'},
-        ],
-        type: [
-          {required: true, message: '请选择商家类型', trigger: 'blur'},
         ]
       },
       ids: []
@@ -186,9 +201,12 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.$request({
-            url: this.form.id ? '/business/update' : '/business/add',
+            url: this.form.id ? '/user/update' : '/user/add',
             method: this.form.id ? 'PUT' : 'POST',
-            data: this.form
+            data: {
+              ...this.form,
+              role: this.role
+            }
           }).then(res => {
             if (res.code === '200') {  // save success
               this.$message.success('保存成功')
@@ -201,9 +219,9 @@ export default {
         }
       })
     },
-    del(id) {   // delete single data
+    del(id) {   // // delete single data
       this.$confirm('您确定删除吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/business/delete/' + id).then(res => {
+        this.$request.delete('/user/delete/' + id).then(res => {
           if (res.code === '200') {   // done
             this.$message.success('操作成功')
             this.load(1)
@@ -223,7 +241,7 @@ export default {
         return
       }
       this.$confirm('您确定批量删除这些数据吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/business/delete/batch', {data: this.ids}).then(res => {
+        this.$request.delete('/user/delete/batch', {data: this.ids}).then(res => {
           if (res.code === '200') {   // done
             this.$message.success('操作成功')
             this.load(1)
@@ -236,12 +254,13 @@ export default {
     },
     load(pageNum) {  // divide to into different page
       if (pageNum) this.pageNum = pageNum
-      this.$request.get('/business/selectPage', {
+      this.$request.get('/user/selectPage', {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
           username: this.username,
           name: this.name,
+          role: this.role
         }
       }).then(res => {
         this.tableData = res.data?.list
@@ -262,6 +281,51 @@ export default {
     },
     handleLicenseSuccess(response, file, fileList) {
       this.form.license = response.data
+    },
+    // 重置密码方法
+    resetPassword(id) {
+      this.$confirm('确定要重置该用户的密码吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request.post('/user/resetPassword', { id: id }).then(res => {
+          if (res.code === '200') {
+            this.$message.success('密码重置成功')
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消重置')
+      })
+    },
+    // 处理禁用/启用状态切换
+    handleToggleStatus(row) {
+      const action = row.isActive == 1 ? '禁用' : '启用'
+      this.$confirm(`确定要${action}该商家吗？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request({
+          url: '/user/update',
+          method: 'PUT',
+          data: {
+            ...row,
+            isActive: row.isActive == 1 ? 0 : 1
+          }
+        }).then(res => {
+          if (res.code === '200') {
+            this.$message.success(`${action}成功`)
+            this.load(1)  // 刷新列表
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消操作')
+      })
     }
   }
 }

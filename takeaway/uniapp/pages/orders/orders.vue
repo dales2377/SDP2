@@ -10,7 +10,7 @@
 						<uni-icons type="right" size="16" color="#666"
 							style="position: relative; top: 2rpx;"></uni-icons>
 					</navigator>
-					<view style="font-size: 24rpx; color: #666;">{{ item.status }}</view>
+					<view style="font-size: 24rpx; color: #666;">{{ orderStatusMap[item.status] || item.status }}</view>
 				</view>
 				<view style="display: flex; align-items: center; grid-gap: 20rpx; margin-bottom: 10rpx;"  @click="goOrdersItem(item.id)">
 					<view>
@@ -23,7 +23,7 @@
 				</view>
 				<view style="display: flex; min-height: 40rpx;">
 					<view style="flex: 1;">
-						<view v-if="item.status === '已取消' || item.status === '已完成' || item.status === '已退款'"
+						<view v-if="item.status === 'complete' || item.status === 'refunded'"
 							@click="del(item.id)">
 							<uni-icons type="trash" size="16" color="#666"
 								style="position: relative; top: 2rpx;"></uni-icons>
@@ -31,13 +31,13 @@
 						</view>
 					</view>
 					<view style="flex: 1; text-align: right;">
-						<uni-tag v-if="item.status === '待支付'" text="支付" size="mini" type="primary"
-							@click="changeStatus(item, '待发货')"></uni-tag>
-						<uni-tag v-if="item.status === '待发货'" text="申请退款" size="mini" type="error"
-							@click="changeStatus(item, '已退款')"></uni-tag>
-						<uni-tag v-if="item.status === '待收货'" text="确认收货" size="mini" type="warning"
-							@click="changeStatus(item, '待评价')"></uni-tag>
-						<uni-tag v-if="item.status === '待评价'" text="评价" size="mini" type="royal" @click="goComment(item.id)"></uni-tag>
+						<uni-tag v-if="item.status === 'awaitpayment'" text="支付" size="mini" type="primary"
+							@click="changeStatus(item, 'awaitshipping')"></uni-tag>
+						<uni-tag v-if="item.status === 'awaitshipping'" text="申请退款" size="mini" type="error"
+							@click="changeStatus(item, 'refunded')"></uni-tag>
+						<uni-tag v-if="item.status === 'awaitreceiption'" text="确认收货" size="mini" type="warning"
+							@click="changeStatus(item, 'awaitcomments')"></uni-tag>
+						<uni-tag v-if="item.status === 'awaitcomments'" text="评价" size="mini" type="royal" @click="goComment(item.id)"></uni-tag>
 					</view>
 				</view>
 			</view>
@@ -54,16 +54,18 @@
 				items: ['全部', '进行中', '待评价', '已退款'],
 				ordersList: [],
 				user: uni.getStorageSync('xm-user'),
-				timer: null // 定时器
+				orderStatusMap: {
+					'awaitpayment': '待支付',
+					'awaitshipping': '待发货',
+					'awaitreceiption': '待收货',
+					'awaitcomments': '待评价',
+					'refunded': '已退款',
+					'complete': '已完成'
+				}
 			}
 		},
 		onShow() {
-			// this.loadOrders()
-			let that = this;
-				this.loadOrders()
-				this.timer = setInterval(function() {
-				that.loadOrders()
-				}, 300000)
+			this.loadOrders()
 		},
 		methods: {
 			goComment(orderId) {
@@ -114,16 +116,16 @@
 				let status = '全部'
 				switch (this.current) {
 					case 0:
-						status = '全部';
+						status = 'all';
 						break
 					case 1:
-						status = '进行中';
+						status = 'progress';
 						break
 					case 2:
-						status = '待评价';
+						status = 'awaitcomments';
 						break
 					case 3:
-						status = '已退款';
+						status = 'refunded';
 						break
 				}
 				this.$request.get('/orders/selectAll', {

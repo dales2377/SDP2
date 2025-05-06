@@ -87,11 +87,7 @@ export default {
   created() {
     this.load(1)
 
-    this.$request.get('/business/selectAll', { //get business which have pass the pending view
-      params: {
-        status: '通过'
-      }
-    }).then(res => {
+    this.$request.get('/user/selectAll?role=BUSINESS').then(res => {
       this.businessList = res.data || []
     })
   },

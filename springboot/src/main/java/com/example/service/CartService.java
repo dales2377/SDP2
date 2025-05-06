@@ -1,9 +1,6 @@
 package com.example.service;
 
-import com.example.entity.AmountDTO;
-import com.example.entity.Business;
-import com.example.entity.Cart;
-import com.example.entity.Goods;
+import com.example.entity.*;
 import com.example.mapper.CartMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -27,6 +24,8 @@ public class CartService {
 
     @Resource
     private BusinessService businessService;
+    @Resource
+    private UserService userService;
 
     /**
      * 新增
@@ -74,8 +73,10 @@ public class CartService {
             Goods goods = goodsService.selectById(c.getGoodsId());
             c.setGoods(goods);
             // 查询商家的信息
-            Business business = businessService.selectById(c.getBusinessId());
-            c.setBusiness(business);
+//            Business business = businessService.selectById(c.getBusinessId());
+            User user = userService.selectById(c.getBusinessId());
+            c.setUser(user);
+//            c.setBusiness(business);
         }
         return cartList;
     }

@@ -18,7 +18,9 @@
     "pages/agreement/agreement",
     "pages/collect/collect",
     "pages/categoryBusiness/categoryBusiness",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/person/password",
+    "pages/forgot-password/forgot-password"
   ],
   "subPackages": [],
   "window": {

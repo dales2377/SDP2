@@ -30,6 +30,17 @@
         from orders_item
         where id = #{id}
     </select>
+    <select id="hotGoods" resultType="com.example.entity.GoodsOrderVO">
+        select oi.goods_name as goodsName,count(oi.goods_name) as nums
+        from orders_item oi
+                 inner join orders o on o.id = order_id
+        <where>
+            <if test="bussinessId!=null">
+                and business_id = #{bussinessId}
+            </if>
+        </where>
+        group by goods_name;
+    </select>
 
     <delete id="deleteById">
         delete from orders_item

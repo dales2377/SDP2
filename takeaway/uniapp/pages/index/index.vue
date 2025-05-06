@@ -55,10 +55,10 @@
 
 						<view style="display: flex;  color: #666; ">
 							<view style="flex: 1;">
-								<text style="color: #ff9800; font-weight: bold;">{{ item.score }}分</text>
-								<text style="margin-left: 10rpx;">已售{{ item.nums }}</text>
+								<text style="color: #ff9800; font-weight: bold;">{{ item.score||0 }}分</text>
+								<text style="margin-left: 10rpx;">已售{{ item.nums||0 }}</text>
 							</view>
-							<view style="flex: 1; text-align: right;">30分钟内送达</text>
+							<!-- <view style="flex: 1; text-align: right;">30分钟内送达</text> -->
 							</view>
 						</view>
 						
@@ -72,7 +72,6 @@
 			</view>
 
 		</view>
-	</view>
 </template>
 
 <script>
@@ -85,7 +84,7 @@
 				businessList: []
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.load()
 		},
 		methods: {
@@ -118,7 +117,7 @@
 						let i = 0
 						this.notice = this.noticeList[i++].content
 						if (this.noticeList.length > 1) {
-							setInterval(() => {
+							setInterval(() => { // 计时器
 								if (i === this.noticeList.length) {
 									i = 0
 								}
@@ -129,7 +128,7 @@
 				})
 
 				// 获取商家的列表
-				this.$request.get('/business/selectAll', { status: '通过' }).then(res => {
+				this.$request.get('/user/selectAll', { role: 'BUSINESS', status: 'pass', isActive: '1' }).then(res => {
 					this.businessList = res.data || []
 				})
 			}

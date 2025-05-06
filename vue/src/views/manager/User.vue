@@ -8,7 +8,7 @@
     </div>
 
     <div class="operation">
-      <el-button type="primary" plain @click="handleAdd">新增</el-button>
+      <!-- <el-button type="primary" plain @click="handleAdd">新增</el-button> -->
       <el-button type="danger" plain @click="delBatch">批量删除</el-button>
     </div>
 
@@ -27,12 +27,28 @@
         <el-table-column prop="username" label="账号"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
-        <el-table-column prop="gender" label="性别"></el-table-column>
+        <el-table-column prop="gender" label="性别">
+          <template v-slot="scope">
+            <el-tag v-if="scope.row.gender === 'male'" type="success">男</el-tag>
+            <el-tag v-else-if="scope.row.gender === 'female'" type="danger">女</el-tag>
+            </template>
+        </el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
-        <el-table-column label="操作" align="center" width="180">
+        <el-table-column prop="jy" label="状态">
+          <template v-slot="scope">
+            <el-tag type="success" v-if="scope.row.isActive == 1">启用</el-tag>
+            <el-tag type="danger" v-if="scope.row.isActive == 0">禁用</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center" width="300">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
+            <el-button size="mini" :type="scope.row.isActive == 1 ? 'danger' : 'success'" plain 
+                       @click="handleToggleStatus(scope.row)">
+              {{ scope.row.isActive == 1 ? '禁用' : '启用' }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -76,8 +92,8 @@
         </el-form-item>
         <el-form-item label="性别" prop="gender">
           <el-radio-group v-model="form.gender">
-            <el-radio label="男"></el-radio>
-            <el-radio label="女"></el-radio>
+            <el-radio label="male">男</el-radio>
+            <el-radio label="female">女</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="电话" prop="phone">
@@ -100,6 +116,7 @@ export default {
   name: "USER",
   data() {
     return {
+      role: 'CUSTOMER',
       tableData: [],  // data in table
       pageNum: 1,   // default page
       pageSize: 10,  // data number n each page
@@ -141,7 +158,10 @@ export default {
           this.$request({
             url: this.form.id ? '/user/update' : '/user/add',
             method: this.form.id ? 'PUT' : 'POST',
-            data: this.form
+            data: {
+              ...this.form,
+              role: this.role
+            }
           }).then(res => {
             if (res.code === '200') {  // save success
               this.$message.success('保存成功')
@@ -195,6 +215,7 @@ export default {
           pageSize: this.pageSize,
           username: this.username,
           name: this.name,
+          role: this.role
         }
       }).then(res => {
         this.tableData = res.data?.list
@@ -215,6 +236,51 @@ export default {
     },
     handleLicenseSuccess(response, file, fileList) {
       this.form.license = response.data
+    },
+    // 重置密码方法
+    resetPassword(id) {
+      this.$confirm('确定要重置该用户的密码吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request.post('/user/resetPassword', { id: id }).then(res => {
+          if (res.code === '200') {
+            this.$message.success('密码重置成功')
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消重置')
+      })
+    },
+    // 处理禁用/启用状态切换
+    handleToggleStatus(row) {
+      const action = row.isActive == 1 ? '禁用' : '启用'
+      this.$confirm(`确定要${action}该用户吗？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$request({
+          url: '/user/update',
+          method: 'PUT',
+          data: {
+            ...row,
+            isActive: row.isActive == 1 ? 0 : 1
+          }
+        }).then(res => {
+          if (res.code === '200') {
+            this.$message.success(`${action}成功`)
+            this.load(1)  // 刷新列表
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message.info('已取消操作')
+      })
     }
   }
 }

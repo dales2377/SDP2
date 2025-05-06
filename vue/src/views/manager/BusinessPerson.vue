@@ -16,8 +16,8 @@
         <el-form-item label="账号" prop="username">
           <el-input v-model="user.username" placeholder="账号"></el-input>
         </el-form-item>
-        <el-form-item label="名称" prop="name">
-          <el-input v-model="user.name" placeholder="名称"></el-input>
+        <el-form-item label="名称" prop="businessName">
+          <el-input v-model="user.businessName" placeholder="名称"></el-input>
         </el-form-item>
         <el-form-item label="电话" prop="phone">
           <el-input v-model="user.phone" placeholder="电话"></el-input>
@@ -71,7 +71,7 @@ export default {
     },
     update() {
       // 保存当前的用户信息到数据库
-      this.$request.put('/business/update', this.user).then(res => {
+      this.$request.put('/user/update', this.user).then(res => {
         if (res.code === '200') {
           // 成功更新
           this.$message.success('保存成功')

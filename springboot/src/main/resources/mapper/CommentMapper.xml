@@ -12,10 +12,10 @@
         select
         comment.*, user.name as userName, user.avatar as userAvatar, business.name as businessName, orders.order_no as orderNo
         from comment
+        left join user as business
+        on comment.business_id=business.id
         left join user
         on comment.user_id = user.id
-        left join business
-        on comment.business_id = business.id
         left join orders
         on comment.order_id = orders.id
         <where>
