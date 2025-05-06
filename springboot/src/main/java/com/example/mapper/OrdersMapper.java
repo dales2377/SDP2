@@ -36,7 +36,7 @@ public interface OrdersMapper {
      */
     List<Orders> selectAll(Orders orders);
 
-    @Select("select * from orders where business_id = #{businessId} and (status = '待评价' or status = '已完成')")
+    @Select("select * from orders where business_id = #{businessId} and (status = 'awaitcomments' or status = 'complete')")
     List<Orders> selectUsageByBusinessId(Integer businessId);
 
     Integer generateOrderNum(CountVO param, Integer id);

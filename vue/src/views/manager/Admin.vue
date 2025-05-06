@@ -31,19 +31,19 @@
         <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column prop="jy" label="状态">
           <template v-slot="scope">
-            <el-tag type="success" v-if="scope.row.jy === 1">启用</el-tag>
-            <el-tag type="danger" v-if="scope.row.jy === 0">禁用</el-tag>
+            <el-tag type="success" v-if="scope.row.isActive == 1">启用</el-tag>
+            <el-tag type="danger" v-if="scope.row.isActive == 0">禁用</el-tag>
           </template>
         </el-table-column>
         <el-table-column label="操作" align="center" width="300">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="danger" :disabled="scope.row.username === 'admin'" plain @click="del(scope.row.id)">删除</el-button>
             <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
-            <el-button size="mini" :type="scope.row.jy === 1 ? 'danger' : 'success'" plain 
+            <el-button size="mini" :type="scope.row.isActive == 1 ? 'danger' : 'success'" plain 
                        @click="handleToggleStatus(scope.row)"
                        :disabled="scope.row.username === 'admin'">
-              {{ scope.row.jy === 1 ? '禁用' : '启用' }}
+              {{ scope.row.isActive == 1 ? '禁用' : '启用' }}
             </el-button>
           </template>
         </el-table-column>
@@ -252,7 +252,7 @@ export default {
         return
       }
       
-      const action = row.jy === 1 ? '禁用' : '启用'
+      const action = row.isActive == 1 ? '禁用' : '启用'
       this.$confirm(`确定要${action}该管理员吗？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -263,7 +263,7 @@ export default {
           method: 'PUT',
           data: {
             ...row,
-            jy: row.jy === 1 ? 0 : 1
+            isActive: row.isActive == 1 ? 0 : 1
           }
         }).then(res => {
           if (res.code === '200') {

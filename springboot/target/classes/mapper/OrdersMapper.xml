@@ -21,19 +21,19 @@
             <if test="businessId != null">and orders.business_id = #{businessId}</if>
             <if test="userId != null">and orders.user_id = #{userId}</if>
             <choose>
-                <when test="status == '全部'"></when>
-                <when test="status == '进行中'">
-                    and (orders.status = '待支付' or orders.status = '待发货' or orders.status = '待收货')
+                <when test="status == 'all'"></when>
+                <when test="status == 'progress'">
+                    and (orders.status = 'awaitpayment' or orders.status = 'awaitshipping' or orders.status = 'awaitreceiption')
                 </when>
-                <when test="status == '待评价'">
-                    and orders.status = '待评价'
+                <when test="status == 'awaitcomments'">
+                    and orders.status = 'awaitcomments'
                 </when>
-                <when test="status == '已退款'">
-                    and orders.status = '已退款'
+                <when test="status == 'refunded'">
+                    and orders.status = 'refunded'
                 </when>
-                <when test="status != null">
-                    and orders.status = #{ status }
-                </when>
+<!--                <when test="status != null">-->
+<!--                    and orders.status = #{ status }-->
+<!--                </when>-->
             </choose>
         </where>
         order by id desc
@@ -54,14 +54,16 @@
         select count(*) from orders
         where  time between #{param.startTime} and #{param.endTime}
         <if test="id !=null">
-            and businessId = #{id}
+            and business_id = #{id}
         </if>
 
     </select>
     <select id="income" resultType="java.lang.Double">
         select IFNULL(sum(actual), 0.0) from orders
         where time between #{startTime} and #{endTime}
-            and business_id = #{bussinessId} group by business_id ;
+            <if test="bussinessId!=null">
+                and business_id = #{bussinessId}
+            </if>
     </select>
 
     <delete id="deleteById">

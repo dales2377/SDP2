@@ -40,16 +40,16 @@
         </el-table-column>
         <el-table-column prop="status" label="审核状态">
           <template v-slot="scope">
-            <el-tag type="info" v-if="scope.row.status === '待审核'">待审核</el-tag>
-            <el-tag type="success" v-if="scope.row.status ==='通过'">通过</el-tag>
-            <el-tag type="danger" v-if="scope.row.status === '拒绝!'">拒绝</el-tag>
+            <el-tag type="info" v-if="scope.row.status === 'Awaitingreview'">待审核</el-tag>
+            <el-tag type="success" v-if="scope.row.status === 'pass'">通过</el-tag>
+            <el-tag type="danger" v-if="scope.row.status === 'cancel'">拒绝</el-tag>
           </template>
         </el-table-column>
 
         <el-table-column prop="jy" label="状态">
           <template v-slot="scope">
-            <el-tag type="success" v-if="scope.row.jy === 1">启用</el-tag>
-            <el-tag type="danger" v-if="scope.row.jy === 0">禁用</el-tag>
+            <el-tag type="success" v-if="scope.row.isActive == 1">启用</el-tag>
+            <el-tag type="danger" v-if="scope.row.isActive == 0">禁用</el-tag>
           </template>
         </el-table-column>
 
@@ -60,9 +60,9 @@
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
             <el-button size="mini" type="warning" plain @click="resetPassword(scope.row.id)">重置密码</el-button>
-            <el-button size="mini" :type="scope.row.jy === 1 ? 'danger' : 'success'" plain 
+            <el-button size="mini" :type="scope.row.isActive == 1 ? 'danger' : 'success'" plain 
                        @click="handleToggleStatus(scope.row)">
-              {{ scope.row.jy === 1 ? '禁用' : '启用' }}
+              {{ scope.row.isActive == 1 ? '禁用' : '启用' }}
             </el-button>
           </template>
         </el-table-column>
@@ -86,7 +86,7 @@
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
         <el-form-item label="审核状态" prop="status">
           <el-select style="width: 100%" v-model="form.status">
-            <el-option v-for="item in ['待审核', '通过', '拒绝']" :key="item" :value="item" :label="item"></el-option>
+            <el-option v-for="(label, value) in statusMap" :key="value" :value="value" :label="label"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="账号" prop="username">
@@ -166,6 +166,11 @@ export default {
       fromVisible: false,
       form: {},
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
+      statusMap: {
+        'Awaitingreview': '待审核',
+        'pass': '通过',
+        'cancel': '拒绝'
+      },
       rules: {
         username: [
           {required: true, message: '请输入账号', trigger: 'blur'},
@@ -297,7 +302,7 @@ export default {
     },
     // 处理禁用/启用状态切换
     handleToggleStatus(row) {
-      const action = row.jy === 1 ? '禁用' : '启用'
+      const action = row.isActive == 1 ? '禁用' : '启用'
       this.$confirm(`确定要${action}该商家吗？`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -308,7 +313,7 @@ export default {
           method: 'PUT',
           data: {
             ...row,
-            jy: row.jy === 1 ? 0 : 1
+            isActive: row.isActive == 1 ? 0 : 1
           }
         }).then(res => {
           if (res.code === '200') {

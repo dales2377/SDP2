@@ -40,7 +40,7 @@
                     <div class="notification-info">
                       <div>商品：{{ item.name }}</div>
                       <div>金额：¥{{ item.actual }}</div>
-                      <div>状态：{{ item.status }}</div>
+                      <div>状态：{{ orderStatusMap[item.status] || item.status }}</div>
                       <div>时间：{{ item.time }}</div>
                     </div>
                   </div>
@@ -120,7 +120,17 @@ export default {
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
       notifications: [], // 通知列表
       showNotifications: false, // 控制通知列表显示
-      notificationTimer: null // 轮询定时器
+      notificationTimer: null, // 轮询定时器
+      // 添加订单状态映射
+      orderStatusMap: {
+        'awaitpayment': '待支付',
+        'awaitshipping': '待发货',
+        'awaitreceiption': '待收货',
+        'awaitcomments': '待评价',
+        'refunded': '已退款',
+        'complete': '已完成',
+        'canceled': '已取消'
+      }
     }
   },
   created() {
@@ -210,7 +220,7 @@ export default {
       }).then(() => {
         // 逐个删除通知
         const deletePromises = this.notifications.map(item => 
-          this.$request.post('/orderNotic/logicDel', { id: item.id })
+          this.$request.post('/orderNotic/logicDel', { id: item.noticeId })
         )
         Promise.all(deletePromises).then(() => {
           this.$message.success('清空成功')

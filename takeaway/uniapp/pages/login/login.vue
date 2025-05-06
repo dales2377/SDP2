@@ -29,7 +29,7 @@
 		data() {
 			return {
 				form: {
-					role: 'USER'
+					role: 'CUSTOMER'
 				},
 				rules: {
 					// 对username字段进行必填验证

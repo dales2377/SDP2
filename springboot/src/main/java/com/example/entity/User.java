@@ -43,15 +43,11 @@ public class User extends Account implements Serializable {
     /** 最后登录时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLogin;
-    /** 是否活跃0 不活跃 1 活跃 */
-    private String isActive;
+    /** 是否活跃0 禁用 1 启用 */
+    private Integer isActive;
 
     /** 审核状态 */
     private String status;
-    /**
-     * 是否禁用
-     */
-    private Integer jy;
     /**
      * 问题
      */
@@ -76,13 +72,6 @@ public class User extends Account implements Serializable {
         this.nums = nums;
     }
 
-    public Integer getJy() {
-        return jy;
-    }
-
-    public void setJy(Integer jy) {
-        this.jy = jy;
-    }
 
     public String getQuestion() {
         return question;
@@ -172,11 +161,11 @@ public class User extends Account implements Serializable {
         this.lastLogin = lastLogin;
     }
 
-    public String getIsActive() {
+    public Integer getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(String isActive) {
+    public void setIsActive(Integer isActive) {
         this.isActive = isActive;
     }
 

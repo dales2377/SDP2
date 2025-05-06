@@ -46,7 +46,7 @@
 		data() {
 			return {
 				form: {
-					role: 'USER',
+					role: 'CUSTOMER',
 					username: '',
 					password: '',
 					question1: '',

@@ -48,8 +48,8 @@ const baseUrl = process.env.NODE_ENV === "development" ? apiConfig.dev.baseUrl :
 					}
 				},
 				range: [
-					{ text: '男', value: '男' },
-					{ text: '女', value: '女' },
+					{ text: '男', value: 'male' },
+					{ text: '女', value: 'female' },
 				]
 			}
 		},

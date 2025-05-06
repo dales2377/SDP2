@@ -6,7 +6,7 @@
 
     <sql id="Base_Column_List">
         id,username,password,name,avatar,role,gender,phone,
-        email,address,business_name,company_name,first_name,last_name,registration_date,last_login,is_active,status,jy,question
+        email,address,business_name,company_name,first_name,last_name,registration_date,last_login,is_active,status,question
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.User">
@@ -15,9 +15,10 @@
         from user
         <where>
             <if test="id != null"> and id= #{id}</if>
-            <if test="username != null"> and username like concat('%', #{username}, '%')</if>
+            <if test="username != null"> and username = #{username}</if>
             <if test="name != null"> and name like concat('%', #{name}, '%')</if>
             <if test="role != null"> and role = #{role}</if>
+            <if test="isActive != null"> and is_active = #{isActive}</if>
             <if test="status!=null"> and status = #{status}</if>
         </where>
         order by id desc
@@ -57,7 +58,6 @@
             <if test="lastLogin != null">last_login,</if>
             <if test="isActive != null">is_active,</if>
             <if test="status != null">status,</if>
-            <if test="jy != null">jy,</if>
             <if test="question != null">question,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -80,7 +80,6 @@
             <if test="lastLogin != null">#{lastLogin},</if>
             <if test="isActive != null">#{isActive},</if>
             <if test="status != null">#{status},</if>
-            <if test="jy != null">#{jy},</if>
             <if test="question != null">#{question},</if>
         </trim>
     </insert>
@@ -138,9 +137,6 @@
             </if>
             <if test="status != null">
                 status = #{status},
-            </if>
-            <if test="jy != null">
-                jy = #{jy},
             </if>
             <if test="question != null">
                 question = #{question},

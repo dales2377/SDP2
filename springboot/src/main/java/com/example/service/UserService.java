@@ -143,7 +143,7 @@ public class UserService {
      */
     public Account login(Account account) {
         User dbUser = this.selectByUsername(account.getUsername());
-        if (dbUser.getJy()==0) {
+        if (dbUser.getIsActive()==0) {
             throw new CustomException(ResultCodeEnum.forbidden);
         }
         if (ObjectUtil.isNull(dbUser)) {
